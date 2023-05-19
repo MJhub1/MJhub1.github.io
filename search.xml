@@ -472,7 +472,31 @@
         <category>笔记</category>
       </categories>
       <tags>
-        <tag>java</tag>
+        <tag>java笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>测试1</title>
+    <url>/posts/f134a8e5.html</url>
+    <content><![CDATA[<p>引用：</p>
+<blockquote>
+<p>引用段落1</p>
+<p>引用段落2</p>
+</blockquote>
+<p>标题：</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><p>代码块：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>链接：<br>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<p>分割线：</p>
+<hr>
+<p>图片：<br><img src="/%E5%9B%BE%E7%89%87%E9%93%BE%E6%8E%A5" alt="图片说明" title="图片title"></p>
+<p><a href="https://markdown.com.cn/"><img src="/assets/img/shiprock.jpg" alt="沙漠中的岩石图片" title="Shiprock"></a></p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>大数据笔记</tag>
       </tags>
   </entry>
 </search>
