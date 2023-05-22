@@ -1,978 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title>Java面试题</title>
-    <url>/posts/a7ef9c4d.html</url>
-    <content><![CDATA[<h4 id="❓-面向对象的三个基本特征？"><a href="#❓-面向对象的三个基本特征？" class="headerlink" title="❓ 面向对象的三个基本特征？"></a>❓ 面向对象的三个基本特征？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>继承：让某个类型的对象获得另一个类型的对象的属性的方法。继承就是子类继承父类的特征和行为，使得子类对象（实例）具有父类的实例域和方法，或子类从父类继承方法，使得子类具有父类相同的行为。</p>
-<p>封装：隐藏部分对象的属性和实现细节，对数据的访问只能通过外公开的接口。通过这种方式，对象对内部数据提供了不同级别的保护，以防止程序中无关的部分意外的改变或错误的使用了对象的私有部分。</p>
-<p>多态：对于同一个行为，不同的子类对象具有不同的表现形式。多态存在的3个条件：1）继承；2）重写；3）父类引用指向子类对象。</p>
-</div></div>
-
-<h4 id="❓-下面两个代码块能正常编译和执行吗？"><a href="#❓-下面两个代码块能正常编译和执行吗？" class="headerlink" title="❓ 下面两个代码块能正常编译和执行吗？"></a>❓ 下面两个代码块能正常编译和执行吗？</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 代码块1</span></span><br><span class="line"><span class="type">short</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="number">1</span>; s1 = s1 + <span class="number">1</span>;</span><br><span class="line"><span class="comment">// 代码块2</span></span><br><span class="line"><span class="type">short</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="number">1</span>; s1 += <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>代码块1编译报错，错误原因是：不兼容的类型: 从int转换到short可能会有损失”。<br>代码块2正常编译和执行。原因：代码块2编译后，字节码中包含了 i2s 指令，该指令用于将 int 转成 short</p>
-</div></div>
-
-<h4 id="❓-amp-和-amp-amp-的区别？"><a href="#❓-amp-和-amp-amp-的区别？" class="headerlink" title="❓ &amp;和&amp;&amp;的区别？"></a>❓ &amp;和&amp;&amp;的区别？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>&amp;&amp;：逻辑与运算符。当运算符左右两边的表达式都为 true，才返回 true。同时具有短路性，如果第一个表达式为 false，则直接返回 false。</p>
-<p>&amp;：逻辑与运算符、按位与运算符。<br>按位与运算符：用于二进制的计算，只有对应的两个二进位均为1时，结果位才为1 ，否则为0。<br>逻辑与运算符：&amp; 在用于逻辑与时，和 &amp;&amp; 的区别是不具有短路性。所在通常使用逻辑与运算符都会使用 &amp;&amp;，而 &amp; 更多的适用于位运算。</p>
-</div></div>
-
-<h4 id="❓-String-是-Java-基本数据类型吗？"><a href="#❓-String-是-Java-基本数据类型吗？" class="headerlink" title="❓  String 是 Java 基本数据类型吗？"></a>❓  String 是 Java 基本数据类型吗？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>不是。Java 中的基本数据类型只有8个：byte、short、int、long、float、double、char、boolean；<br>除了基本类型（primitive type），剩下的都是引用类型（reference type）。</p>
-<p>基本数据类型：数据直接存储在栈上<br>引用数据类型区别：数据存储在堆上，栈上只存储引用地址</p>
-</div></div>
-
-<h4 id="❓-String-类可以继承吗？"><a href="#❓-String-类可以继承吗？" class="headerlink" title="❓  String 类可以继承吗？"></a>❓  String 类可以继承吗？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>不行。String 类使用 final 修饰，无法被继承。</p>
-</div></div>
-
-<h4 id="❓-String和StringBuilder、StringBuffer的区别？"><a href="#❓-String和StringBuilder、StringBuffer的区别？" class="headerlink" title="❓  String和StringBuilder、StringBuffer的区别？"></a>❓  String和StringBuilder、StringBuffer的区别？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>String：String 的值被创建后不能修改，任何对 String 的修改都会引发新的 String 对象的生成。<br>StringBuffer：跟 String 类似，但是值可以被修改，使用 synchronized 来保证线程安全。<br>StringBuilder：StringBuffer 的非线程安全版本，没有使用 synchronized，具有更高的性能，推荐优先使用。</p>
-</div></div>
-
-<h4 id="❓-String-s-x3D-new-String-“xyz”-创建了几个字符串对象？"><a href="#❓-String-s-x3D-new-String-“xyz”-创建了几个字符串对象？" class="headerlink" title="❓  String s &#x3D; new String(“xyz”) 创建了几个字符串对象？"></a>❓  String s &#x3D; new String(“xyz”) 创建了几个字符串对象？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>一个或两个。如果字符串常量池已经有“xyz”，则是一个；否则，两个。</p>
-<p>当字符串常量池没有 “xyz”，此时会创建如下两个对象：<br>一个是字符串字面量 “xyz” 所对应的、驻留（intern）在一个全局共享的字符串常量池中的实例，此时该实例也是在堆中，字符串常量池只放引用。<br>另一个是通过 new String() 创建并初始化的，内容与”xyz”相同的实例，也是在堆中。</p>
-</div></div>
-
-<h4 id="❓-String-s-x3D-“xyz”-和-String-s-x3D-new-String-“xyz”-区别？"><a href="#❓-String-s-x3D-“xyz”-和-String-s-x3D-new-String-“xyz”-区别？" class="headerlink" title="❓  String s &#x3D; “xyz” 和 String s &#x3D; new String(“xyz”) 区别？"></a>❓  String s &#x3D; “xyz” 和 String s &#x3D; new String(“xyz”) 区别？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>两个语句都会先去字符串常量池中检查是否已经存在 “xyz”，如果有则直接使用，如果没有则会在常量池中创建 “xyz” 对象。<br>另外，String s &#x3D; new String(“xyz”) 还会通过 new String() 在堆里创建一个内容与 “xyz” 相同的对象实例。<br>所以前者其实理解为被后者的所包含。</p>
-</div></div>
-
-<h4 id="❓-x3D-x3D-和-equals-的区别是什么？"><a href="#❓-x3D-x3D-和-equals-的区别是什么？" class="headerlink" title="❓  &#x3D;&#x3D; 和 equals 的区别是什么？"></a>❓  &#x3D;&#x3D; 和 equals 的区别是什么？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>&#x3D;&#x3D;：运算符，用于比较基础类型变量和引用类型变量。<br>对于基础类型变量，比较的变量保存的值是否相同，类型不一定要相同。<br>对于引用类型变量，比较的是两个对象的地址是否相同。<br>equals：Object 类中定义的方法，通常用于比较两个对象的值是否相等。<br>equals 在 Object 方法中其实等同于 &#x3D;&#x3D;，但是在实际的使用中，equals 通常被重写用于比较两个对象的值是否相同。</p>
-</div></div>
-
-<h4 id="❓-两个对象的-hashCode-相同，则-equals-也一定为-true，对吗？"><a href="#❓-两个对象的-hashCode-相同，则-equals-也一定为-true，对吗？" class="headerlink" title="❓  两个对象的 hashCode() 相同，则 equals() 也一定为 true，对吗？"></a>❓  两个对象的 hashCode() 相同，则 equals() 也一定为 true，对吗？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>不对。hashCode() 和 equals() 之间的关系如下：<br>当有 a.equals(b) &#x3D;&#x3D; true 时，则 a.hashCode() &#x3D;&#x3D; b.hashCode() 必然成立，<br>反过来，当 a.hashCode() &#x3D;&#x3D; b.hashCode() 时，a.equals(b) 不一定为 true。</p>
-</div></div>
-
-
-<h4 id="❓-什么是反射"><a href="#❓-什么是反射" class="headerlink" title="❓  什么是反射"></a>❓  什么是反射</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>反射是指在运行状态中，对于任意一个类都能够知道这个类所有的属性和方法；并且对于任意一个对象，都能够调用它的任意一个方法；这种动态获取信息以及动态调用对象方法的功能称为反射机制。</p>
-</div></div>
-
-
-<h4 id="❓-深拷贝和浅拷贝区别是什么？"><a href="#❓-深拷贝和浅拷贝区别是什么？" class="headerlink" title="❓  深拷贝和浅拷贝区别是什么？"></a>❓  深拷贝和浅拷贝区别是什么？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>数据分为基本数据类型和引用数据类型。基本数据类型：数据直接存储在栈中；引用数据类型：存储在栈中的是对象的引用地址，真实的对象数据存放在堆内存里。<br>浅拷贝：对于基础数据类型：直接复制数据值；对于引用数据类型：只是复制了对象的引用地址，新旧对象指向同一个内存地址，修改其中一个对象的值，另一个对象的值随之改变。<br>深拷贝：对于基础数据类型：直接复制数据值；对于引用数据类型：开辟新的内存空间，在新的内存空间里复制一个一模一样的对象，新老对象不共享内存，修改其中一个对象的值，不会影响另一个对象。<br>深拷贝相比于浅拷贝速度较慢并且花销较大。</p>
-</div></div>
-
-<h4 id="❓-并发和并行有什么区别？"><a href="#❓-并发和并行有什么区别？" class="headerlink" title="❓  并发和并行有什么区别？"></a>❓  并发和并行有什么区别？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>并发：两个或多个事件在同一时间间隔发生。<br>并行：两个或者多个事件在同一时刻发生。<br>并行是真正意义上，同一时刻做多件事情，而并发在同一时刻只会做一件事件，只是可以将时间切碎，交替做多件事情。</p>
-</div></div>
-
-
-<h4 id="❓-构造器是否可被-重写"><a href="#❓-构造器是否可被-重写" class="headerlink" title="❓  构造器是否可被 重写?"></a>❓  构造器是否可被 重写?</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>Constructor 不能被 override（重写），但是可以 overload（重载），所以你可以看到⼀个类中有多个构造函数的情况。</p>
-</div></div>
-
-
-<h4 id="❓-重载（Overload）和重写（Override）的区别？"><a href="#❓-重载（Overload）和重写（Override）的区别？" class="headerlink" title="❓  重载（Overload）和重写（Override）的区别？"></a>❓  重载（Overload）和重写（Override）的区别？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>方法的重载和重写都是实现多态的方式，区别在于前者实现的是编译时的多态性，而后者实现的是运行时的多态性。</p>
-<p>重载：一个类中有多个同名的方法，但是具有有不同的参数列表（参数类型不同、参数个数不同或者二者都不同）。</p>
-<p>重写：发生在子类与父类之间，子类对父类的方法进行重写，参数都不能改变，返回值类型可以不相同，但是必须是父类返回值的派生类。即外壳不变，核心重写！重写的好处在于子类可以根据需要，定义特定于自己的行为。</p>
-</div></div>
-
-<h4 id="❓-Error-和-Exception-有什么区别？"><a href="#❓-Error-和-Exception-有什么区别？" class="headerlink" title="❓  Error 和 Exception 有什么区别？"></a>❓  Error 和 Exception 有什么区别？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>Error 和 Exception 都是 Throwable 的子类，用于表示程序出现了不正常的情况。区别在于：<br>Error 表示系统级的错误和程序不必处理的异常，是恢复不是不可能但很困难的情况下的一种严重问题，比如内存溢出，不可能指望程序能处理这样的情况。<br>Exception 表示需要捕捉或者需要程序进行处理的异常，是一种设计或实现问题，也就是说，它表示如果程序运行正常，从不会发生的情况。</p>
-</div></div>
-
-
-<h4 id="❓-wait-和-sleep-方法的区别"><a href="#❓-wait-和-sleep-方法的区别" class="headerlink" title="❓  wait() 和 sleep() 方法的区别"></a>❓  wait() 和 sleep() 方法的区别</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>来源不同：sleep() 来自 Thread 类，wait() 来自 Object 类。</p>
-<p>对于同步锁的影响不同：sleep() 不会改变同步锁的行为，如果当前线程持有同步锁，那么 sleep 是不会让线程释放同步锁的。wait() 会释放同步锁，让其他线程进入 synchronized 代码块执行。</p>
-<p>使用范围不同：sleep() 可以在任何地方使用。wait() 只能在同步控制方法或者同步控制块里面使用，否则会抛 IllegalMonitorStateException。</p>
-<p>恢复方式不同：两者会暂停当前线程，但是在恢复上不太一样。sleep() 在时间到了之后会重新恢复；wait() 则需要其他线程调用同一对象的 notify()&#x2F;nofityAll() 才能重新恢复。</p>
-</div></div>
-
-
-<h4 id="❓-线程的-join-方法是干啥用的？"><a href="#❓-线程的-join-方法是干啥用的？" class="headerlink" title="❓  线程的 join() 方法是干啥用的？"></a>❓  线程的 join() 方法是干啥用的？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>用于等待当前线程终止。如果一个线程A执行了 threadB.join() 语句，其含义是：当前线程A等待 threadB 线程终止之后才从 threadB.join() 返回继续往下执行自己的代码。</p>
-</div></div>
-
-<h4 id="❓-编写多线程程序有几种实现方式？"><a href="#❓-编写多线程程序有几种实现方式？" class="headerlink" title="❓  编写多线程程序有几种实现方式？"></a>❓  编写多线程程序有几种实现方式？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>通常来说，可以认为有三种方式：1）继承 Thread 类；2）实现 Runnable 接口；3）实现 Callable 接口。</p>
-<p>其中，Thread 其实也是实现了 Runable 接口。Runnable 和 Callable 的主要区别在于是否有返回值。</p>
-</div></div>
-
-
-<h4 id="❓-synchronized-和-Lock-的区别"><a href="#❓-synchronized-和-Lock-的区别" class="headerlink" title="❓  synchronized 和 Lock 的区别"></a>❓  synchronized 和 Lock 的区别</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>1）Lock 是一个接口；synchronized 是 Java 中的关键字，synchronized 是内置的语言实现；</p>
-<p>2）Lock 在发生异常时，如果没有主动通过 unLock() 去释放锁，很可能会造成死锁现象，因此使用 Lock 时需要在 finally 块中释放锁；synchronized 不需要手动获取锁和释放锁，在发生异常时，会自动释放锁，因此不会导致死锁现象发生；</p>
-<p>3）Lock 的使用更加灵活，可以有响应中断、有超时时间等；而 synchronized 却不行，使用 synchronized 时，等待的线程会一直等待下去，直到获取到锁；</p>
-<p>4）在性能上，随着近些年 synchronized 的不断优化，Lock 和 synchronized 在性能上已经没有很明显的差距了，所以性能不应该成为我们选择两者的主要原因。官方推荐尽量使用 synchronized，除非 synchronized 无法满足需求时，则可以使用 Lock。</p>
-</div></div>
-
-<h4 id="❓-线程池的核心属性有哪些？"><a href="#❓-线程池的核心属性有哪些？" class="headerlink" title="❓  线程池的核心属性有哪些？"></a>❓  线程池的核心属性有哪些？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>threadFactory（线程工厂）：用于创建工作线程的工厂。</p>
-<p>corePoolSize（核心线程数）：当线程池运行的线程少于 corePoolSize 时，将创建一个新线程来处理请求，即使其他工作线程处于空闲状态。</p>
-<p>workQueue（队列）：用于保留任务并移交给工作线程的阻塞队列。</p>
-<p>maximumPoolSize（最大线程数）：线程池允许开启的最大线程数。</p>
-<p>handler（拒绝策略）：往线程池添加任务时，将在下面两种情况触发拒绝策略：1）线程池运行状态不是 RUNNING；2）线程池已经达到最大线程数，并且阻塞队列已满时。</p>
-<p>keepAliveTime（保持存活时间）：如果线程池当前线程数超过 corePoolSize，则多余的线程空闲时间超过 keepAliveTime 时会被终止。</p>
-</div></div>
-
-<h4 id="❓-线程池有哪些拒绝策略？"><a href="#❓-线程池有哪些拒绝策略？" class="headerlink" title="❓  线程池有哪些拒绝策略？"></a>❓  线程池有哪些拒绝策略？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>AbortPolicy：中止策略。默认的拒绝策略，直接抛出 RejectedExecutionException。调用者可以捕获这个异常，然后根据需求编写自己的处理代码。</p>
-<p>DiscardPolicy：抛弃策略。什么都不做，直接抛弃被拒绝的任务。</p>
-<p>DiscardOldestPolicy：抛弃最老策略。抛弃阻塞队列中最老的任务，相当于就是队列中下一个将要被执行的任务，然后重新提交被拒绝的任务。如果阻塞队列是一个优先队列，那么“抛弃最旧的”策略将导致抛弃优先级最高的任务，因此最好不要将该策略和优先级队列放在一起使用。</p>
-<p>CallerRunsPolicy：调用者运行策略。在调用者线程中执行该任务。该策略实现了一种调节机制，该策略既不会抛弃任务，也不会抛出异常，而是将任务回退到调用者（调用线程池执行任务的主线程），由于执行任务需要一定时间，因此主线程至少在一段时间内不能提交任务，从而使得线程池有时间来处理完正在执行的任务。</p>
-</div></div>
-
-<h4 id="❓-ArrayList-和-LinkedList-的区别。"><a href="#❓-ArrayList-和-LinkedList-的区别。" class="headerlink" title="❓  ArrayList 和 LinkedList 的区别。"></a>❓  ArrayList 和 LinkedList 的区别。</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>ArrayList 底层基于动态数组实现，LinkedList 底层基于链表实现。</p>
-<p>对于按 index 索引数据（get&#x2F;set方法）：ArrayList 通过 index 直接定位到数组对应位置的节点，而 LinkedList需要从头结点或尾节点开始遍历，直到寻找到目标节点，因此在效率上 ArrayList 优于 LinkedList。</p>
-<p>对于随机插入和删除：ArrayList 需要移动目标节点后面的节点（使用System.arraycopy 方法移动节点），而 LinkedList 只需修改目标节点前后节点的 next 或 prev 属性即可，因此在效率上 LinkedList 优于 ArrayList。</p>
-<p>对于顺序插入和删除：由于 ArrayList 不需要移动节点，因此在效率上比 LinkedList 更好。这也是为什么在实际使用中 ArrayList 更多，因为大部分情况下我们的使用都是顺序插入。</p>
-</div></div>
-
-<h4 id="❓-什么是双亲委派模型？"><a href="#❓-什么是双亲委派模型？" class="headerlink" title="❓  什么是双亲委派模型？"></a>❓  什么是双亲委派模型？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>如果一个类加载器收到了类加载的请求，它首先不会自己去尝试加载这个类，而是把这个请求委派给父类加载器去完成，每一个层次的类加载器都是如此，因此所有的加载请求最终都应该传送到顶层的启动类加载器中，只有当父加载器反馈自己无法完成这个加载请求（它的搜索范围中没有找到所需的类）时，子加载器才会尝试自己去加载。</p>
-</div></div>
-
-<h4 id="❓-介绍下垃圾收集机制（在什么时候，对什么，做了什么）？"><a href="#❓-介绍下垃圾收集机制（在什么时候，对什么，做了什么）？" class="headerlink" title="❓  介绍下垃圾收集机制（在什么时候，对什么，做了什么）？"></a>❓  介绍下垃圾收集机制（在什么时候，对什么，做了什么）？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>在什么时候？<br>在触发GC的时候，具体如下，这里只说常见的 Young GC 和 Full GC。<br>触发Young GC：当新生代中的 Eden 区没有足够空间进行分配时会触发Young GC。<br>触发Full GC：<br>当准备要触发一次Young GC时，如果发现统计数据说之前Young GC的平均晋升大小比目前老年代剩余的空间大，则不会触发Young GC而是转为触发Full GC。（通常情况）<br>如果有永久代的话，在永久代需要分配空间但已经没有足够空间时，也要触发一次Full GC。<br>System.gc()默认也是触发Full GC。<br>heap dump带GC默认也是触发Full GC。<br>CMS GC时出现Concurrent Mode Failure会导致一次Full GC的产生。</p>
-<p>对什么？<br>对那些JVM认为已经“死掉”的对象。即从GC Root开始搜索，搜索不到的，并且经过一次筛选标记没有复活的对象。</p>
-<p>做了什么？<br>对这些JVM认为已经“死掉”的对象进行垃圾收集，新生代使用复制算法，老年代使用标记-清除和标记-整理算法。</p>
-</div></div>
-]]></content>
+<search> 
+  
+    
+    <entry>
+      <title>Color Themes</title>
+      <link href="/hexo-theme-freemind-blog/2016/01/30/color-themes/"/>
+      <url>/hexo-theme-freemind-blog/2016/01/30/color-themes/</url>
+      <content type="html"><![CDATA[<p>Freemind contains luxuriant color themes for your choice. To use one of them, simply modify the <code>theme</code> and <code>inverse</code> settings from your theme <code>_config.yml</code> file <em>e.g.</em></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">theme: bootstrap</div><div class="line">inverse: true</div></pre></td></tr></table></figure><p>, where <code>theme</code> here indicates which theme you are going to use, and <code>inverse</code> here says you want inverse color scheme on some important components such as navigation bar and header title.</p><p>User contributions are welcome! If you want to contribute a color theme, you can <a href="https://github.com/wzpan/hexo-theme-freemind-blog/tree/dev" target="_blank" rel="external">fork the dev branch</a> . Write a new theme in LESS and send me a pull request.</p><a id="more"></a><h2 id="bootstrap"><a href="#bootstrap" class="headerlink" title="bootstrap"></a>bootstrap</h2><h3 id="default"><a href="#default" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/bootstrap.png" alt="bootstrap"></p><h3 id="inverse"><a href="#inverse" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/bootstrap-inverse.png" alt="bootstrap-inverse"></p><h2 id="cerulean"><a href="#cerulean" class="headerlink" title="cerulean"></a>cerulean</h2><h3 id="default-1"><a href="#default-1" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/cerulean.png" alt="cerulean"></p><h3 id="inverse-1"><a href="#inverse-1" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/cerulean-inverse.png" alt="cerulean-inverse"></p><h2 id="cosmo"><a href="#cosmo" class="headerlink" title="cosmo"></a>cosmo</h2><h3 id="default-2"><a href="#default-2" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/cosmo.png" alt="cosmo"></p><h3 id="inverse-2"><a href="#inverse-2" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/cosmo-inverse.png" alt="cosmo-inverse"></p><h2 id="cyborg"><a href="#cyborg" class="headerlink" title="cyborg"></a>cyborg</h2><h3 id="default-3"><a href="#default-3" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/cyborg.png" alt="cyborg"></p><h3 id="inverse-3"><a href="#inverse-3" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/cyborg-inverse.png" alt="cyborg-inverse"></p><h2 id="darkly"><a href="#darkly" class="headerlink" title="darkly"></a>darkly</h2><h3 id="default-4"><a href="#default-4" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/darkly.png" alt="darkly"></p><h3 id="inverse-4"><a href="#inverse-4" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/darkly-inverse.png" alt="darkly-inverse"></p><h2 id="flatly"><a href="#flatly" class="headerlink" title="flatly"></a>flatly</h2><h3 id="default-5"><a href="#default-5" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/flatly.png" alt="flatly"></p><h3 id="inverse-5"><a href="#inverse-5" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/flatly-inverse.png" alt="flatly"></p><h2 id="journal"><a href="#journal" class="headerlink" title="journal"></a>journal</h2><h3 id="default-6"><a href="#default-6" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/journal.png" alt="journal"></p><h3 id="inverse-6"><a href="#inverse-6" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/journal-inverse.png" alt="journal-inverse"></p><h2 id="lumen"><a href="#lumen" class="headerlink" title="lumen"></a>lumen</h2><h3 id="default-7"><a href="#default-7" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/lumen.png" alt="lumen"></p><h3 id="inverse-7"><a href="#inverse-7" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/lumen-inverse.png" alt="lumen-inverse"></p><h2 id="paper"><a href="#paper" class="headerlink" title="paper"></a>paper</h2><h3 id="default-8"><a href="#default-8" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/paper.png" alt="paper"></p><h3 id="inverse-8"><a href="#inverse-8" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/paper-inverse.png" alt="paper-inverse"></p><h2 id="readable"><a href="#readable" class="headerlink" title="readable"></a>readable</h2><h3 id="default-9"><a href="#default-9" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/readable.png" alt="readable"></p><h3 id="inverse-9"><a href="#inverse-9" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/readable-inverse.png" alt="readable-inverse"></p><h2 id="sandstone"><a href="#sandstone" class="headerlink" title="sandstone"></a>sandstone</h2><h3 id="default-10"><a href="#default-10" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/sandstone.png" alt="sandstone"></p><h3 id="inverse-10"><a href="#inverse-10" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/sandstone-inverse.png" alt="sandstone-inverse"></p><h2 id="simplex"><a href="#simplex" class="headerlink" title="simplex"></a>simplex</h2><h3 id="default-11"><a href="#default-11" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/simplex.png" alt="simplex"></p><h3 id="inverse-11"><a href="#inverse-11" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/simplex-inverse.png" alt="simplex-inverse"></p><h2 id="slate"><a href="#slate" class="headerlink" title="slate"></a>slate</h2><h3 id="default-12"><a href="#default-12" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/slate.png" alt="slate"></p><h3 id="inverse-12"><a href="#inverse-12" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/slate-inverse.png" alt="slate-inverse"></p><h2 id="spacelab"><a href="#spacelab" class="headerlink" title="spacelab"></a>spacelab</h2><h3 id="default-13"><a href="#default-13" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/spacelab.png" alt="spacelab"></p><h3 id="inverse-13"><a href="#inverse-13" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/spacelab-inverse.png" alt="spacelab-inverse"></p><h2 id="superhero"><a href="#superhero" class="headerlink" title="superhero"></a>superhero</h2><h3 id="default-14"><a href="#default-14" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/superhero.png" alt="superhero"></p><h3 id="inverse-14"><a href="#inverse-14" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/superhero-inverse.png" alt="superhero-inverse"></p><h2 id="united"><a href="#united" class="headerlink" title="united"></a>united</h2><h3 id="default-15"><a href="#default-15" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/united.png" alt="united"></p><h3 id="inverse-15"><a href="#inverse-15" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/united-inverse.png" alt="united-inverse"></p><h2 id="yeti"><a href="#yeti" class="headerlink" title="yeti"></a>yeti</h2><h3 id="default-16"><a href="#default-16" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/yeti.png" alt="yeti"></p><h3 id="inverse-16"><a href="#inverse-16" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/yeti-inverse.png" alt="yeti-inverse"></p>]]></content>
+      
       <categories>
-        <category>资源</category>
+          
+          <category> Docs </category>
+          
       </categories>
-      <tags>
-        <tag>面试题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JavaEE</title>
-    <url>/posts/9daba997.html</url>
-    <content><![CDATA[<h3 id="类："><a href="#类：" class="headerlink" title="类："></a>类：</h3><p>​	类中有且仅有五大成分：成员变量、成员方法、构造器、代码块、内部类<br>​	创建对象时：new的是构造器</p>
-<h3 id="this"><a href="#this" class="headerlink" title="this:"></a>this:</h3><p>​	作用：<br>​			this代表当前对象的引用<br>​			this可以用在实例方法和构造器中</p>
-<h3 id="封装："><a href="#封装：" class="headerlink" title="封装："></a>封装：</h3><p>​	作用：为了安全，可以实现代码的组件化<br>​	核心思想：合理隐藏，合理暴露</p>
-<h3 id="static"><a href="#static" class="headerlink" title="static:"></a>static:</h3><p>​	注意：在同一个类中访问静态成员可以省略类名不写<br>​		静态方法不可以直接访问实例变量&#x2F;方法</p>
-<h3 id="继承："><a href="#继承：" class="headerlink" title="继承："></a>继承：</h3><p>​	作用：可以提高代码的复用<br>​	特点：<br>​			单继承：一个类只能继承一个直接父类，可以多层继承<br>​					为什么？因为会出现二义性。当被继承的两个父类有同名方法时，无法确定调用的是哪一个<br>​	继承后的构造器：<br>​			子类的构造器的第一行默认有一个 super() 调用了父类的无参数构造器，用于初始化父类信息<br>​			可以在子类构造器长通过super(形参)指定调用父类的某个构造器（必须在第一行）<br>​	注意：<br>​			子类不能继承父类的构造器<br>​			子类能继承父类的私有成员（但是不能直接访问）<br>​			子类不能继承父类的静态成员（但是可以访问）<br>​			this(参数)与super(参数)必须放在构造器的第一行，否则报错</p>
-<h3 id="重写："><a href="#重写：" class="headerlink" title="重写："></a>重写：</h3><p>​	方法重写的校验注解：@Override   加上这个注解就必须是重写父类的方法，否则报错<br>​	注意：<br>​			子类不能重写父类的私有成员<br>​			子类不能重写父类的静态成员</p>
-<h3 id="抽象类：abstract"><a href="#抽象类：abstract" class="headerlink" title="抽象类：abstract"></a>抽象类：abstract</h3><p>​	特征：<br>​			抽象类虽然有构造器但是不能创建对象<br>​	存在的意义：<br>​			抽象类就是为了被子类继承<br>​			抽象类体现的是模板思想：部分实现，部分抽象<br>​	注意：<br>​			拥有抽象方法必须定义成抽象类<br>​			抽象方法没有方法体，只有方法签名<br>​			抽象类除了抽象方法，也可以具备其他类能具有的成分<br>​			抽象类一定有构造器，以供子类创建对象时，初始化父类成员使用<br>​			抽象类不一定包含抽象方法<br>​			抽象类的子类必须重写父抽象类的所有抽象方法</p>
-<h3 id="接口："><a href="#接口：" class="headerlink" title="接口："></a>接口：</h3><p>​		常量的标准定义：public static final 类型 名称&#x3D;值<br>​		注意：<br>​			接口中的抽象方法可以省略public abstract，默认会加上<br>​			接口中的抽象方法可以省略public static final，默认会加上<br>​			java1.8之前接口中只能是抽象方法和常量。1.8之后新增了默认方法(用default修饰)，静态方法，私有方法<br>​			默认方法相当于实例方法，只能用接口的实现类的对象来调用<br>​			接口的静态方法只能用接口名来调用<br>​			接口的私有方法其实是JDK1.9开始支持<br>​			接口可以多实现（逗号隔开）<br>​			接口与接口可以多继承<br>​			一个类既继承一个父类，又实现若干个接口时，父类的成员方法与接口的默认方法崇明，子类会执行父类的成员方法。<br>​			接口没有构造器，不能创建对象</p>
-<h3 id="代码块："><a href="#代码块：" class="headerlink" title="代码块："></a>代码块：</h3><p>​		静态代码块：</p>
-<p>​			触发一次，与类一起优先加载</p>
-<p>​			可以用于执行静态资源的初始化操作</p>
-<p>​		实例代码块：（很少用）</p>
-<p>​			创建对象时执行一次</p>
-<h3 id="final"><a href="#final" class="headerlink" title="final:"></a>final:</h3><p>​		final修饰类：类不能被继承了</p>
-<p>​		final修饰方法：方法不能被重写了</p>
-<p>​		final修饰变量：变量只能被赋值一次（起保护作用，防止值被修改）</p>
-<p>​				final修饰静态变量：变量就变成常量了</p>
-<p>​		注意：</p>
-<p>​			abstract与final是互斥关系，不能同时出现修饰成员</p>
-<h3 id="枚举类："><a href="#枚举类：" class="headerlink" title="枚举类："></a>枚举类：</h3><p>​		作用：枚举类用于做信息标志和信息分类</p>
-<p>​		注意：枚举类是多例设计模式</p>
-<h3 id="多态："><a href="#多态：" class="headerlink" title="多态："></a>多态：</h3><p>​		形式：</p>
-<p>​				父类类型 对象名称&#x3D;new 子类构造器;</p>
-<p>​				接口 对象名称&#x3D;new 实现类构造器;</p>
-<p>​		概念：同一类型的对象，执行同一行为，在不同的状态下会表现出不同的行为特征</p>
-<p>​		多态的识别：</p>
-<p>​				对方法的调用：编译看左边，运行看右边</p>
-<p>​				对变量的调用：编译看左边，运行看左边</p>
-<p>​		使用前提：</p>
-<p>​				必须存在继承或实现关系</p>
-<p>​				必须存在父类类型的变量引用子类类型的对象</p>
-<p>​				需要存在方法的重写</p>
-<p>​		优势：</p>
-<p>​				右边对象可以实现组件化切换，以便于扩展和维护，可以实现类与类之间的解耦</p>
-<p>​				父类类型作为方法形式参数，传递子类对象给方法</p>
-<p>​		劣势：</p>
-<p>​				多态形式下，不能直接调用子类特有的功能</p>
-<p>​		类型判断： 变量 instanceof 类型     判断前面的变量是否是后面的类型，是则返回true</p>
-<h3 id="内部类："><a href="#内部类：" class="headerlink" title="内部类："></a>内部类：</h3><p>​		作用：可以提供更好的封装性，内部类有更多权限修饰符，封装性有更多的控制</p>
-<p>​		分类：</p>
-<p>​				静态内部类：创建对象：外部类.内部类 对象名称&#x3D;new 外部类.内部类构造器</p>
-<p>​				实例内部类：创建对象：外部类.内部类 对象名称&#x3D;new 外部类构造器.new 内部类构造器</p>
-<p>​						注意：不能在实例内部类中定义静态成员，但可以定义常量</p>
-<p>​				局部内部类</p>
-<p>​				匿名内部类：</p>
-<p>​						格式：new 类名|抽象类|接口(形参){方法重写}</p>
-<h3 id="权限修饰符："><a href="#权限修饰符：" class="headerlink" title="权限修饰符："></a>权限修饰符：</h3><p>​		private只能在本类中访问</p>
-<p>​		缺省只能在本包或本类中访问</p>
-<p>​		protected只能在本类，本包以及其他包的子类中访问</p>
-<p>​		public可以在任何地方访问</p>
-<h3 id="Objects类："><a href="#Objects类：" class="headerlink" title="Objects类："></a>Objects类：</h3><p>​		Object类的子类，JDK1.7开始之后才有</p>
-<p>​		两个方法：equals()  比较两个对象（不会出现空指针异常）</p>
-<p>​							isNull() 判断是否为null</p>
-<h3 id="Date类："><a href="#Date类：" class="headerlink" title="Date类："></a>Date类：</h3><p>​		构造器：Date()       Date(long time)</p>
-<p>​		方法：getTime() 获取当前时间戳</p>
-<p>​	SimpleDateFormat类：</p>
-<p>​			.format() 用来格式化日期对象&#x2F;时间戳</p>
-<p>​			.parse() 格式化字符串</p>
-<p>​	Calender抽象类：可以快速的计算多少天后的日期</p>
-<h3 id="Math类："><a href="#Math类：" class="headerlink" title="Math类："></a>Math类：</h3><p>​		绝对值：Math.abs()   向上取整：Math.ceil()   向下取整：Math.floor()</p>
-<p>​		求指数次方：Math.pow()   四舍五入：Math.round()</p>
-<h3 id="System系统类："><a href="#System系统类：" class="headerlink" title="System系统类："></a>System系统类：</h3><p>​		终止当前虚拟机：System.exit(0)</p>
-<h3 id="BigDicimal类：解决浮点型精度问题"><a href="#BigDicimal类：解决浮点型精度问题" class="headerlink" title="BigDicimal类：解决浮点型精度问题"></a>BigDicimal类：解决浮点型精度问题</h3><p>​		BigDicimal.valueOf()  包装浮点数为大数据对象</p>
-<p>​		.doubleValue()  把BigDicimal转换成double类型</p>
-<h3 id="包装类："><a href="#包装类：" class="headerlink" title="包装类："></a>包装类：</h3><p>​		自动装箱：基本类型的值或变量赋值给包装类</p>
-<p>​		自动拆箱：包装类的值或变量赋值基本类型</p>
-<p>​		注意：也可以手动装箱，手动拆箱</p>
-<p>​		特殊功能：把字符串类型的数值转换成对应的基本数据类型</p>
-<p>​				Integer.parseInt()       Integer.valueOf()</p>
-<h3 id="正则表达式：Regex"><a href="#正则表达式：Regex" class="headerlink" title="正则表达式：Regex"></a>正则表达式：Regex</h3><p>​		用于校验：”str”.matches(“校验规则”)</p>
-<p>​		用于分割：”str”.split(“校验规则”)   按校验规则进行分割</p>
-<p>​		用于替换：”str”.replaceAll(“校验规则”,”替换内容”)   将校验规则所对应的字符替换掉</p>
-<p>​		用于爬取内容信息：</p>
-<p>​				String rs&#x3D;”爬取内容”</p>
-<p>​				1.定义爬取规则：String regex&#x3D;””</p>
-<p>​				2.编译正则表达式成为匹配对象 Pattern pattern &#x3D;Pattern.compile(regex)</p>
-<p>​				3.通过匹配规则对象得到一个匹配数据内容的匹配器对象：</p>
-<p>​						Matcher matcher&#x3D;pattern.matcher(rs)</p>
-<p>​				4.通过匹配器取出信息</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">​						<span class="keyword">while</span>(matcher.find())&#123;</span><br><span class="line"></span><br><span class="line">​							System.out.println(matcher.group())</span><br><span class="line"></span><br><span class="line">​						&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="泛型："><a href="#泛型：" class="headerlink" title="泛型："></a>泛型：</h3><p>​		作用：在编译阶段约束只能操作指定数据类型</p>
-<p>​		自定义：自定义泛型类，自定义泛型方法，自定义泛型接口</p>
-<p>​		泛型通配符：</p>
-<p>​					？在使用泛型时代表一切类型</p>
-<p>​					E,T,K,V是在定义泛型时代表一切类型</p>
-<p>​		泛型的上下限：</p>
-<p>​					？extends 类 ：说明？必须是此类或者其子类</p>
-<p>​					？supper 类 ：说明？必须是此类或者其父类</p>
-<p>​		注意：</p>
-<p>​				泛型和集合都只支持引用数据类型，不支持基本数据类型</p>
-<p>​				泛型没有继承关系</p>
-<h3 id="Collection集合："><a href="#Collection集合：" class="headerlink" title="Collection集合："></a>Collection集合：</h3><p>​		体系：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">				   Collection&lt;E&gt;</span><br><span class="line">			/	      		        \</span><br><span class="line">		Set&lt;E&gt;				        List&lt;E&gt;</span><br><span class="line">	/	  \			/             \             \</span><br><span class="line">HashSet&lt;E&gt;	TreeSet&lt;E&gt;		ArrayList&lt;E&gt;  LinkedList&lt;E&gt;  Vector</span><br><span class="line">	/</span><br><span class="line">LinkedHashSet&lt;&gt;</span><br></pre></td></tr></table></figure>
-
-<p>​		Set集合：无序，不重复，无索引</p>
-<p>​				– HashSet：无序，不重复，无索引</p>
-<p>​						– LinkedHashSet：有序，不重复，无索引</p>
-<p>​				– TreeSet：升序排序，不重复，无索引</p>
-<p>​		List集合：有序，可重复，有索引</p>
-<p>​				– ArrayList：有序，可重复，有索引</p>
-<p>​				– LinkedList：有序，可重复，有索引  （可以实现队列与栈）</p>
-<p>​				– Vector：线程安全，速度慢</p>
-<h3 id="Set："><a href="#Set：" class="headerlink" title="Set："></a>Set：</h3><p>​		怎么判断是否重复？<br>​				让两个对象调用自己的hashCode()方法得到彼此的哈希值进行比较，若不同则不重复，若相同，则继续<br>​				让两个对象进行equals比较内容是否相同，相同则重复<br>​		无序的根本原因：<br>​				因为底层采用了哈希表存储元素</p>
-<h3 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet:"></a>TreeSet:</h3><p>​		对于自定义的引用数据类型：TreeSet默认无法排序</p>
-<p>​				解决方案1：实现Comparable类，并重写比较方法compareTo</p>
-<p>​				解决方案2：直接为集合设置比较器Comparator对象，重写比较方法</p>
-<h3 id="Collections工具类："><a href="#Collections工具类：" class="headerlink" title="Collections工具类："></a>Collections工具类：</h3><p>​		方法：</p>
-<p>​				.addAll(被添加元素的集合,可变参数)   </p>
-<p>​				.shuffle(要打乱顺序的集合)</p>
-<p>​				.sort(要排序的集合)</p>
-<h3 id="可变参数："><a href="#可变参数：" class="headerlink" title="可变参数："></a>可变参数：</h3><p>​		作用：可以在形参中接受任意个，可变参数在方法内部本质上就是一个数组</p>
-<p>​		格式：类型… name</p>
-<p>​		注意：</p>
-<p>​				一个形参列表中可变参数只能有一个</p>
-<p>​				可变参数必须在形参列表的最后面</p>
-<h3 id="遍历："><a href="#遍历：" class="headerlink" title="遍历："></a>遍历：</h3><h4 id="for循环：只适用于有索引的集合"><a href="#for循环：只适用于有索引的集合" class="headerlink" title="for循环：只适用于有索引的集合"></a>for循环：只适用于有索引的集合</h4><h4 id="迭代器："><a href="#迭代器：" class="headerlink" title="迭代器："></a>迭代器：</h4><p>​		创建迭代器对象：集合名称.Iterator()</p>
-<p>​		方法：.next()     .hasNext()</p>
-<h4 id="foreach"><a href="#foreach" class="headerlink" title="foreach:"></a>foreach:</h4><p>​		格式：for(元素类型 name：集合名称){}</p>
-<h4 id="Lamda表达式：（JDK1-8）"><a href="#Lamda表达式：（JDK1-8）" class="headerlink" title="Lamda表达式：（JDK1.8）"></a>Lamda表达式：（JDK1.8）</h4><p>​		格式：集合名称.forEach(s-&gt;{  System.out.println(s);}  )</p>
-<p>​				简化：集合名称.forEach(  s-&gt;System.out.println(s)  )</p>
-<p>​				再简化：集合名称.forEach(  System.out :: println  )</p>
-<h3 id="Map集合："><a href="#Map集合：" class="headerlink" title="Map集合："></a>Map集合：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">		Map&lt;K,V&gt;</span><br><span class="line">	/             \</span><br><span class="line">TreeMap&lt;K,V&gt;      HashMap&lt;K,V&gt;</span><br><span class="line">			\</span><br><span class="line">					LinkedHashMap&lt;K,V&gt;</span><br></pre></td></tr></table></figure>
-
-<p>​		Map：键是无序，不重复，无索引</p>
-<p>​				–TreeMap：升序排序，不重复，无索引</p>
-<p>​				–HashMap：无序，不重复，无索引</p>
-<p>​				–LinkedHashMap：有序，不重复，无索引</p>
-<p>​		注意：</p>
-<p>​				HashSet集合底层是基于HashMap的</p>
-<p>​				TreeSet集合底层是基于TreeMap的</p>
-<p>​				浮点型的大小比较：Double.compare(one,two);</p>
-<p>​		遍历：</p>
-<p>​					“键找值遍历”：先获取Map集合全部的键，再根据键找值</p>
-<p>​					“键值对遍历”：.entrySet()将Map集合转Set集合，再遍历</p>
-<p>​						获取map集合的元素实体类型：Set&lt;Map.Entry&lt;K,V&gt;&gt; entries&#x3D;maps.entrySet();</p>
-<p>​					lamada：</p>
-<p>​							maps.foreach({  (k,v) -&gt; {}  })</p>
-<h3 id="异常："><a href="#异常：" class="headerlink" title="异常："></a>异常：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">	Throwable</span><br><span class="line">	/		\</span><br><span class="line">Error			Exception</span><br><span class="line">				/        \</span><br><span class="line">			编译时异常	 RuntimeException</span><br></pre></td></tr></table></figure>
-
-<p>​		Error：无法处理的错误，系统级错误</p>
-<p>​		常见运行时异常：</p>
-<p>​				数组索引越界异常</p>
-<p>​				空指针异常</p>
-<p>​				类型转换异常</p>
-<p>​				数学操作异常</p>
-<p>​				数字转换异常</p>
-<p>​		异常的产生默认的处理过程：</p>
-<p>​				1.在出现异常的代码那里自动创建一个异常对象</p>
-<p>​				2.异常会从方法，抛给调用者，最终再抛给JVM</p>
-<p>​				3.JVM接受到异常对象后，在控制台输出异常栈信息，并结束程序</p>
-<p>​		异常处理：最佳处理方案：将异常抛出到最外层，再在最外层用try进行异常处理</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">​				<span class="keyword">try</span>&#123;</span><br><span class="line"></span><br><span class="line">​				&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line"></span><br><span class="line">​					e.printStackTrace()</span><br><span class="line"></span><br><span class="line">​				&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line"></span><br><span class="line">​				&#125;</span><br></pre></td></tr></table></figure>
-<p>​				注意：不建议在finally中写return，因为会覆盖前面所有的return值；</p>
-<p>​		抛出异常：</p>
-<p>​				throws：用在方法上</p>
-<p>​				throw：用在方法体，创建异常类并抛出</p>
-<h3 id="多线程："><a href="#多线程：" class="headerlink" title="多线程："></a>多线程：</h3><p>​		进程：</p>
-<p>​			特征：动态性，独立性，开发性</p>
-<p>​		线程：线程属于进程，一个进程可以有多个线程</p>
-<p>​			Thread类的API：</p>
-<p>​					设置线程名称：引用.setName()     </p>
-<p>​							可以通过创建有参构造器为线程起名字，调用Thread类里的有参构造器</p>
-<p>​					获取线程名称：引用.getName()     </p>
-<p>​							获取当前所在线程的名称：Thread.currentThread()</p>
-<p>​					让当前线程休眠：Thread.sleep()</p>
-<p>​					等待线程执行完：引用.join()</p>
-<p>​			创建线程：</p>
-<p>​					1.定义线程类，继承Thread类，并重写run()    启动：引用.start()</p>
-<p>​					2.定义线程任务类，实现Runnable接口，并重写run()，再把线程任务对象包装成线程对象</p>
-<p>​							优点：可以继承其他类，用一个线程任务对象可以被包装成多个线程对象</p>
-<p>​										适合多个线程去共享同一个资源</p>
-<p>​					3.定义线程任务类，实现Callable接口，并重写call()，再把线程任务对象包装成未来任务对象，再把未</p>
-<p>​					   来任务对象包装为线程对象</p>
-<p>​							优点：具有实现Runnable接口的所有优点，此外，还能直接得到线程执行的结果  .get()</p>
-<p>​			线程安全问题：多个线程同时操作同一个共享资源时可能会存在线程安全</p>
-<p>​			线程同步：为了解决线程安全</p>
-<p>​					三种方式：</p>
-<p>​						同步代码块：synchronized(唯一锁对象){共享资源代码}</p>
-<p>​								实例方法可以用this作为锁对象，静态方法可以用类名.class作为锁对象</p>
-<p>​						同步方法：在方法上加上synchronized关键字</p>
-<p>​						lock显示锁(同步锁)：java.util.concurrent.locks.Lock</p>
-<p>​								创建同步锁：private final Lock lock&#x3D;new ReentrantLock();</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">lock.lock();<span class="comment">//加锁</span></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">       共享资源代码</span><br><span class="line">   &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">       e.printStackTrace();</span><br><span class="line">   &#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">       lock.unlock();<span class="comment">//解锁</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<p>​				线程通信： </p>
-<p>​						锁对象.wait() 让当前线程进入等待</p>
-<p>​						锁对象.notify() 唤醒当前锁对象上等待状态的某个线程</p>
-<p>​						锁对象.wait() 唤醒当前锁对象上等待状态的所有线程</p>
-<p>​				线程状态：</p>
-<p>​						new、runnable(就绪状态，运行状态)、blocked、timed_waiting、terminated </p>
-<p>​			线程池：ExecutorService</p>
-<p>​					作用：降低资源消耗、提高响应速度、提高线程的可管理性</p>
-<p>​					创建线程池：ExecutorService pools&#x3D;Executors.newFixedThreadPool(线程数量)</p>
-<p>​					提交任务：pools.submit(线程任务类的引用)</p>
-<p>​					关闭线程池：pools.shutdown()</p>
-<p>​			死锁：</p>
-<p>​					产生的四个必要条件：</p>
-<p>​							1.互斥使用：当资源被占用时，其他线程不能使用</p>
-<p>​							2.不可抢占：资源请求者不能强制从资源占有者手中夺取资源</p>
-<p>​							3.请求和保持：当资源请求者在请求其他资源的同时保持对原有资源的占有</p>
-<p>​							4.循环等待：存在一个等待循环队列</p>
-<h3 id="volatile："><a href="#volatile：" class="headerlink" title="volatile："></a>volatile：</h3><p>​		问题：并发编程下，多线程修改共享变量会出现变量修改值后的不可见性</p>
-<p>​				原因：每个线程都有自己的工作内存，线程都是从主内存拷贝共享变量的副本值</p>
-<p>​							每个线程是在自己的工作内存操作共享变量的</p>
-<p>​				解决方案：</p>
-<p>​							加锁（加锁会清空工作内存，读取主内存中最新的共享变量）</p>
-<p>​							给共享变量加上volatile关键字（一旦有一个线程修改了voaltile修饰的变量，其他线程会更新）</p>
-<p>​		java内存模型JMM：JVM规范中定义的一种内存模型，描述了java程序中各种变量的访问规则</p>
-<p>​		原子性：指一批操作是一个整体，要么同时成功，要么同时失败，不能被干扰</p>
-<p>​						volatile只能保证线程间变量的可见性，但是不能保证变量操作的原子性</p>
-<p>​				保证原子性方案：</p>
-<p>​							加锁</p>
-<p>​							使用原子类</p>
-<h3 id="原子类：Atomic"><a href="#原子类：Atomic" class="headerlink" title="原子类：Atomic"></a>原子类：Atomic</h3><p>​			原子类：java.util.concurrent.atomic，性能高效，线程安全，可以保证原子性			</p>
-<p>​			原理：CAS机制（先比较再交换）</p>
-<p>​			乐观锁与悲观锁： CAS，总是假设最好的情况被称为乐观锁</p>
-<p>​											Synchronized，总是假设最坏情况被称为悲观锁</p>
-<h3 id="并发包："><a href="#并发包：" class="headerlink" title="并发包："></a>并发包：</h3><p>​			ConcurrentHashMap：线程安全，效率高，性能好，最新最好用的线程安全的Map集合</p>
-<p>​					对比：</p>
-<p>​							HashMap：线程不安全，性能好</p>
-<p>​							HashTable：线程安全，性能较差，被淘汰</p>
-<p>​					高效的原因：CAS机制+局部锁定(分段式锁)</p>
-<p>​			CountDownLatch：可以控制一个或多个线程等待其他线程执行完，再执行自己</p>
-<p>​						构造器：CountDownLatch(int count)  初始化唤醒需要countDown几步</p>
-<p>​						方法：await() 让当前线程等待</p>
-<p>​									countDown()   计数器减一</p>
-<p>​			CyclicBarrier循环屏障：某个线程任务必须等待其他线程执行完毕以后才能最终触发自己执行</p>
-<p>​						作用：可以实现多线程中，某个任务在等待其他线程执行完后触发</p>
-<p>​						构造器：CyclicBarrier(int parties,Runnable barrierAction)  在线程到达屏障时，优先执行任务</p>
-<p>​						方法：await() 回收当前线程</p>
-<p>​			Semaphore信号量：控制访问特定资源的线程数目</p>
-<p>​						作用：控制线程并发占锁的数量</p>
-<p>​						构造器：Semaphore(int permits)  permits表示许可线程的数量</p>
-<p>​								Semaphore(int permits,boolean fair)  fair表示公平性，若为true,下次执行的线程会等待最久</p>
-<p>​						方法：acquire() 获取许可</p>
-<p>​									release() 释放许可</p>
-<p>​			Exchanger交换者：进行线程间的数据交换,一个线程如果等不到对方的数据交换就会一致等待</p>
-<p>​						构造器：Exchanger()  </p>
-<p>​						方法：exchang() 交换 ，可以设置等待时间</p>
-<h3 id="Lambda表达式："><a href="#Lambda表达式：" class="headerlink" title="Lambda表达式："></a>Lambda表达式：</h3><p>​			使用前提：</p>
-<p>​						lambda表达式只能简化接口中只有一个抽象方法的匿名内部类形式</p>
-<p>​						一旦某个接口加上了@FunctionalInterface注解，则可以使用lambda简化</p>
-<p>​			省略写法：方法体只有一行时，可省略大括号以及分号（return语句，还需要省略return）</p>
-<p>​							   参数类型可以省略，若只有一个参数，还可以省略()</p>
-<h3 id="方法引用："><a href="#方法引用：" class="headerlink" title="方法引用："></a>方法引用：</h3><p>​			作用：可以进一步简化lambda表达式</p>
-<p>​			格式：</p>
-<p>​						类型或者对象::引用的方法</p>
-<p>​						类::静态方法   (o1,o2)-&gt;类.静态方法(o1,o2);  简化为：类::静态方法</p>
-<p>​						特定类型::方法  </p>
-<p>​						类型::new    String[]::new 转换为数组类型</p>
-<p>​			例子1：lists.forEach(s-&gt;System.out.println(s));</p>
-<p>​						简化为：lists.forEach(System.out::println);</p>
-<h3 id="Stream流"><a href="#Stream流" class="headerlink" title="Stream流:"></a>Stream流:</h3><p>​			作用：用来简化集合类库或者数组API的弊端</p>
-<p>​			格式：lists.stream().filter(s-&gt;{}).forEach()…</p>
-<p>​			获取流：</p>
-<p>​					Collection集合：集合.stream()</p>
-<p>​					Map集合：集合.keySet().stream()  或  集合.values().stream() 或 集合.entrySet().stream()</p>
-<p>​					数组：Arrays.stream(数组名)  或  Stream.of(数组名)</p>
-<p>​			常用API：</p>
-<p>​					forEach() 遍历      count()计数  </p>
-<p>​					filter()过滤             limit() 取前几个元素</p>
-<p>​					skip()跳过前几个    map()加工方法</p>
-<p>​					concat()  合并两个流</p>
-<p>​			终结方法与非终结方法：</p>
-<p>​					终结方法有：forEach()  count()</p>
-<p>​					非终结方法：除上面之外的其他方法</p>
-<p>​			收集流：把流的数据转回到集合中</p>
-<p>​					转换为Set集合：流.collect(Collectors.toSet())</p>
-<p>​					转换为List集合：流.collect(Collectors.toList())</p>
-<p>​					转换为数组：流.toArray()</p>
-<h3 id="File类："><a href="#File类：" class="headerlink" title="File类："></a>File类：</h3><p>​		创建文件对象：</p>
-<p>​				使用绝对路径：</p>
-<p>​					File f1&#x3D;new File(“D:&#x2F;a.jpg”)</p>
-<p>​					路径分隔符： &#x2F;  或者 \ \ 或者  File.separator</p>
-<p>​				使用相对路径：从当前工程寻找</p>
-<p>​					File f2&#x3D;new File(“文件对象&#x2F;文件夹对象”)</p>
-<p>​		常见API：</p>
-<p>​				.getAbsolutePath()    获取相对路径</p>
-<p>​				.getPath()   获取定义时的路径</p>
-<p>​				.getName()  获取文件的名称</p>
-<p>​				.length()  获取文件大小(字节数)</p>
-<p>​				.exists()  判断文件路径是否存在</p>
-<p>​				.isFile()  判断文件对象是否是文件</p>
-<p>​				.isDirectory()  判断文件对象是否是文件夹</p>
-<p>​				.delete()  删除文件或空文件夹</p>
-<p>​				.mkdirs()  创建多级文件夹</p>
-<p>​			目录遍历</p>
-<p>​					dir1.list()</p>
-<p>​					dir1.listFiles()  获取当前目录对象的全部一级文件对象</p>
-<p>​					f1.lastModified()  最后修改时间</p>
-<p>​			递归搜索文件：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">searchFiles</span><span class="params">(File dir,String fileName)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(dir.exists()&amp;&amp;dir.isDirectory())&#123;</span><br><span class="line">        File[] files=dir.listFiles();</span><br><span class="line">        <span class="keyword">if</span>(files!=<span class="literal">null</span>&amp;&amp;files.length&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(File f:files)&#123;</span><br><span class="line">                <span class="keyword">if</span>(f.isFile())&#123;</span><br><span class="line">                    <span class="keyword">if</span>(f.getName().contains(fileName))&#123;</span><br><span class="line">                        System.out.println(f.getAbsolutePath());</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                        searchFiles(f,fileName);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="I-x2F-O流："><a href="#I-x2F-O流：" class="headerlink" title="I&#x2F;O流："></a>I&#x2F;O流：</h3><p>​		分类：输入流，输出流（以内存为基准，读到内存是输入流，从内存写入磁盘是输出流）</p>
-<p>​		字节输入流：InputStream</p>
-<p>​		字节输出流：OutputStream</p>
-<p>​		字符输入流：Reader	</p>
-<p>​		字符输出流：Writer</p>
-<h3 id="文件流："><a href="#文件流：" class="headerlink" title="文件流："></a>文件流：</h3><p>​		FileInputStream：</p>
-<p>​					创建字节输入流：new FileInputStream(“文件路径”)</p>
-<p>​					.read() 读一个字节，若读不到就返回-1   注意：读中文时必会乱码，因为会截断中文字节</p>
-<p>​					.read(byte[] buffer)读一个字节数组，若读不到就返回-1  注意：读中文时可能会乱码		</p>
-<p>​		FileOutputStream：	</p>
-<p>​					创建字节输出流：new FileOutputStream(“文件路径”)  每次创建都会清空文件</p>
-<p>​					.write() 输出一个字节</p>
-<p>​					.write(byte[] buffer)读一个字节数组</p>
-<p>​						换行：os.write(“\r\n”.getBytes())</p>
-<p>​		文件复制：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">InputStream is=<span class="literal">null</span>;</span><br><span class="line">OutputStream os=<span class="literal">null</span>;</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    is=<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line">    os=<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line">    <span class="type">byte</span>[] buffer=<span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">    <span class="type">int</span> len;</span><br><span class="line">    <span class="keyword">while</span>((len=is.read(buffer))!=-<span class="number">1</span>)&#123;</span><br><span class="line">        os.write(buffer,<span class="number">0</span>,len);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">&quot;复制成功&quot;</span>);</span><br><span class="line">&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(is!=<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            is.close();</span><br><span class="line">        &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">    		e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(os!=<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">           os.close();</span><br><span class="line">        &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">    		e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​		FileReader：</p>
-<p>​					创建文件字符输入流：new FileReader(“path”);</p>
-<p>​					.read() 读一个字符，返回该字符的编码，若读不到就返回-1</p>
-<p>​					.read(char[] buffer)读一个字节数组</p>
-<p>​		FileWriter：</p>
-<p>​					创建文件字符输出流：new FileWriter(“path”);</p>
-<p>​					.write() 输出一个字符</p>
-<p>​					.write(char[] buffer) 输出一个字节数组</p>
-<h3 id="缓冲流："><a href="#缓冲流：" class="headerlink" title="缓冲流："></a>缓冲流：</h3><p>​		BudderedInputStream：</p>
-<p>​				将一个文件字节输入流包装成缓冲字节输入流：new BudderedInputStream(文件字节输入流);</p>
-<p>​				原理：缓冲字节输入流自带8KB的缓冲池</p>
-<p>​		BudderedOutputStream：</p>
-<p>​				将一个文件字节输出流包装成缓冲字节输入流：new BudderedOutputStream(文件字节输出流)  </p>
-<p>​		BudderedReader：</p>
-<p>​					创建缓冲字符输入流：new BudderedReader(Reader reader);</p>
-<p>​					.read() 读一个字符，返回该字符的机器码，若读不到就返回-1</p>
-<p>​					.read(char[] buffer)读一个字节数组</p>
-<p>​					.readLine() 读一行，返回字符串</p>
-<p>​			读文本文件标准代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Reader fr=<span class="keyword">new</span> <span class="title class_">FileReader</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line">BudderedReader br=<span class="keyword">new</span> <span class="title class_">BudderedReader</span>(fr);</span><br><span class="line">String line;</span><br><span class="line"><span class="keyword">while</span>((line=br.readLine())!=<span class="literal">null</span>)&#123;</span><br><span class="line">    System.out.println(line);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​		BudderedWriter：</p>
-<p>​					创建缓冲字符输出流：new FileWriter(“path”);</p>
-<p>​					.write() 输出一个字符</p>
-<p>​					.write(char[] buffer) 输出一个字节数组</p>
-<p>​					.newLine() 换行</p>
-<p>​		字符输入转换流：InputStreamReader</p>
-<p>​			作用：解决字符流读取不同编码乱码的问题，将字节流转换为字符流</p>
-<p>​			new InputStreamReader(文件字节输入流,”编码格式”);</p>
-<p>​		字符输出转换流：OutputStreamwriter</p>
-<p>​			作用：指定编码将字节输出流转换成字符输出流</p>
-<p>​			new OutputStreamwriter(字节输出流,”编码格式”);</p>
-<h3 id="序列化：ObjectOutputStream-x2F-ObjectInputStream"><a href="#序列化：ObjectOutputStream-x2F-ObjectInputStream" class="headerlink" title="序列化：ObjectOutputStream&#x2F;ObjectInputStream"></a>序列化：ObjectOutputStream&#x2F;ObjectInputStream</h3><p>​		序列化：	   对象字节输出流：ObjectOutputStream</p>
-<p>​				将一个文件字节输出流包装成对象字节输出流：new ObjectOutputStream(文件字节输出流);</p>
-<p>​				将对象序列化：.writeObject(对象)</p>
-<p>​				注意：对象如果想参与序列化，对象必须实现序列化接口Serializable</p>
-<p>​							成员变量前使用treanient修饰，将不参与序列化</p>
-<p>​		反序列化：	对象字节输入流：ObjectInputStream</p>
-<p>​				将一个文件字节输入流包装成对象字节输入流：new ObjectInputStream(文件字节输出流);</p>
-<p>​				将对象序列化：.readObject(对象)</p>
-<p>​		序列化版本号：</p>
-<p>​				加入序列版本号：private static final long serialVersionUID&#x3D;1L</p>
-<h3 id="打印流：PrintStream-x2F-PrintWriter"><a href="#打印流：PrintStream-x2F-PrintWriter" class="headerlink" title="打印流：PrintStream&#x2F;PrintWriter"></a>打印流：PrintStream&#x2F;PrintWriter</h3><p>​		作用：方便高效的打印各种数据</p>
-<p>​		创建打印流：new PrintStream(“path”);</p>
-<p>​		改变输出流向：System.setOut(打印流对象)</p>
-<h3 id="网络编程："><a href="#网络编程：" class="headerlink" title="网络编程："></a>网络编程：</h3><h4 id="InetAddress类"><a href="#InetAddress类" class="headerlink" title="InetAddress类"></a>InetAddress类</h4><p>​				方法：.getHostHame()域名    .getHostAddress()地址</p>
-<h4 id="UDP通信："><a href="#UDP通信：" class="headerlink" title="UDP通信："></a>UDP通信：</h4><p>​				DatagramPacket数据包对象：用来封装要发送或接收的数据包</p>
-<p>​						构造器：</p>
-<p>​									发送端：DatagramPacket(byte[] buf,int length,InetAddress address,int port)</p>
-<p>​									接收端：DatagramPacket(byte[] buf,int length)</p>
-<p>​						方法：</p>
-<p>​									.getLength()</p>
-<p>​				DatagramSocket发送对象：用来发送或接收数据包</p>
-<p>​						构造器：</p>
-<p>​									DatagramSocket()</p>
-<p>​									DatagramPacket(int port)</p>
-<p>​						方法：</p>
-<p>​									.send()发送数据包  .receive()接收数据包</p>
-<h4 id="TCP通信："><a href="#TCP通信：" class="headerlink" title="TCP通信："></a>TCP通信：</h4><p>​				模拟通信：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">服务端：</span><br><span class="line">    ServerSocket ss=<span class="keyword">new</span> <span class="title class_">ServerSocket</span>(端口);</span><br><span class="line">	Socket socket=ss.accept();</span><br><span class="line">	InputStream is=socket.getInputStream();</span><br><span class="line">	Reader isr=<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(is);</span><br><span class="line">	BufferedReader br=<span class="keyword">new</span> <span class="title class_">BufferedReader</span>(isr);</span><br><span class="line">	String msg;</span><br><span class="line">	<span class="keyword">if</span>((msg=br.readLine())!=<span class="literal">null</span>)&#123;</span><br><span class="line">        System.out.println(msg);</span><br><span class="line">    &#125;</span><br><span class="line">客户端：</span><br><span class="line">    Socket socket=<span class="keyword">new</span> <span class="title class_">Socket</span>(ip，端口);</span><br><span class="line">    OutputStream os=socket.getOutputStream();</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        Scanner sc=<span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        System.out.print(<span class="string">&quot;请说：&quot;</span>);</span><br><span class="line">        ps.println(sc.nextLine());</span><br><span class="line">        ps.flush();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>​				图片上传：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">服务端：</span><br><span class="line">   	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String DEDT_File=<span class="string">&quot;服务器文件路径&quot;</span>;</span><br><span class="line">    ServerSocket ss=<span class="keyword">new</span> <span class="title class_">ServerSocket</span>(端口);</span><br><span class="line">	Socket socket=ss.accept();</span><br><span class="line">	InputStream is=socket.getInputStream();</span><br><span class="line">	BufferedInputStream bis=<span class="keyword">new</span> <span class="title class_">BufferedInputStream</span>(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(DEDT_File+UUID.randomUUID().toString()+<span class="string">&quot;.jpg&quot;</span>));</span><br><span class="line">	<span class="type">byte</span>[] buffer=<span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">    <span class="type">int</span> len;</span><br><span class="line">    <span class="keyword">while</span>((len=bis.rea(buffer))!=-<span class="number">1</span>)&#123;</span><br><span class="line">        bos.write(buffer,<span class="number">0</span>,len);</span><br><span class="line">    &#125;</span><br><span class="line">	bos.flush();</span><br><span class="line">    bis.close();</span><br><span class="line">	PrintStream ps=<span class="keyword">new</span> <span class="title class_">PrintStream</span>(socket.getOutputStream());</span><br><span class="line">	ps.println(<span class="string">&quot;收到&quot;</span>);</span><br><span class="line">	ps.flush();</span><br><span class="line">客户端：</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String SRC_IMAGE=<span class="string">&quot;本地图片路径&quot;</span>;</span><br><span class="line">    Socket socket=<span class="keyword">new</span> <span class="title class_">Socket</span>(ip，端口);</span><br><span class="line">    OutputStream os=socket.getOutputStream();</span><br><span class="line">    BufferedOutputStream bos=<span class="keyword">new</span> <span class="title class_">BufferedOutputStream</span>(os);</span><br><span class="line">    BufferedInputStream bis=<span class="keyword">new</span> <span class="title class_">BufferedInputStream</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(SRC_IMAGE));</span><br><span class="line">    <span class="type">byte</span>[] buffer=<span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">    <span class="type">int</span> len;</span><br><span class="line">    <span class="keyword">while</span>((len=bis.rea(buffer))!=-<span class="number">1</span>)&#123;</span><br><span class="line">        bos.write(buffer,<span class="number">0</span>,len);</span><br><span class="line">    &#125;</span><br><span class="line">    bos.flush();</span><br><span class="line">    bis.close();</span><br><span class="line">	socket.shutdownOutput();</span><br><span class="line">    BufferedReader br=<span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(socket.getInputStream()));</span><br><span class="line">    System.out.println(br.readLine());</span><br></pre></td></tr></table></figure>
-
-<h4 id="通信模型："><a href="#通信模型：" class="headerlink" title="通信模型："></a>通信模型：</h4><p>​					BIO通信模式：同步阻塞式通信，性能极差，大量线程，大量阻塞</p>
-<p>​					伪异步通信：引入线程池</p>
-<p>​					NIO通信模式：同步非阻塞，轮询所有客户端，有数据才开启线程来处理</p>
-<p>​					AIO通信模式：异步非阻塞，io通信交给操作系统</p>
-<h3 id="单元测试："><a href="#单元测试：" class="headerlink" title="单元测试："></a>单元测试：</h3><p>​		测试方法的要求：</p>
-<p>​			1.必须public修饰  2.没有返回值没有参数  3.必须使用@Test注解</p>
-<p>​			@Test</p>
-<p>​			public void XXXTest(){}</p>
-<h3 id="反射："><a href="#反射：" class="headerlink" title="反射："></a>反射：</h3><p>​		作用：做高级框架，能设计一些通用技术功能</p>
-<p>​		关键：编译以后的class文件对象，反射是工作在运行时的技术，反射工作在运行阶段</p>
-<p>​		获取类对象：1.类名.class：Class&lt;?&gt; c1&#x3D;Student.class;</p>
-<p>​								2.对象.getClass()</p>
-<p>​								3.Class.forName(“类的全限定名”)</p>
-<p>​		获取构造器：1.类对象.getDeclaredConstructors();全部构造器</p>
-<p>​								2.类对象.getConstructor();某个构造器，只能是public的</p>
-<p>​								3.类对象.getDeclaredConstructor();某个构造器</p>
-<p>​				API： 创建实例：.newInstance();</p>
-<p>​							暴力打开私有构造器的访问：.setAccessible(true)</p>
-<p>​		获取成员变量：1.类对象.getDeclaredFields();全部成员变量</p>
-<p>​									2.类对象.getDeclaredField();某个成员变量</p>
-<p>​				API：.set(被赋值的对象,value) 给对象注入某个成员变量数据</p>
-<p>​						  .get(对象)获取对象的值</p>
-<p>​		获取方法：1.类对象.getDeclaredMethods()所有方法</p>
-<p>​							2.类对象.getDeclaredMethod(String name)某个方法</p>
-<p>​				API：.invoke(方法对象)触发方法对象</p>
-<h3 id="注解："><a href="#注解：" class="headerlink" title="注解："></a>注解：</h3><p>​		自定义注解： </p>
-<p>​				修饰符 @interface 注解名{</p>
-<p>​						类型 属性名();</p>
-<p>​				}</p>
-<p>​		元注解：</p>
-<p>​				@Target()注解可以使用的位置</p>
-<p>​				@Retention注解的生命周期</p>
-<p>​		</p>
-<h3 id="动态代理："><a href="#动态代理：" class="headerlink" title="动态代理："></a>动态代理：</h3><h3 id="算法："><a href="#算法：" class="headerlink" title="算法："></a>算法：</h3><p>​		冒泡排序：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span>[] bubbleSort(<span class="type">int</span>[] arr)&#123;</span><br><span class="line">       <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;arr.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">           <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;arr.length-i-<span class="number">1</span>;j++)&#123;</span><br><span class="line">               <span class="keyword">if</span>(arr[j]&gt;arr[j+<span class="number">1</span>])&#123;</span><br><span class="line">                   <span class="type">int</span> temp=arr[j+<span class="number">1</span>];</span><br><span class="line">                   arr[j+<span class="number">1</span>]=arr[j];</span><br><span class="line">                   arr[j]=temp;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125; </span><br><span class="line">       <span class="keyword">return</span> arr;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<p>​		选择排序：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span>[] selectSort(<span class="type">int</span>[] arr)&#123;</span><br><span class="line">       <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;arr.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">           <span class="keyword">for</span>(<span class="type">int</span> j=i+<span class="number">1</span>;j&lt;arr.length-<span class="number">1</span>;j++)&#123;</span><br><span class="line">               <span class="keyword">if</span>(arr[j]&lt;arr[i])&#123;</span><br><span class="line">                   <span class="type">int</span> temp=arr[i];</span><br><span class="line">                   arr[i]=arr[j];</span><br><span class="line">                   arr[j]=temp;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125; </span><br><span class="line">       <span class="keyword">return</span> arr;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<p>​		二分查找：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">binarySerach</span><span class="params">(<span class="type">int</span>[] arr,<span class="type">int</span> num)</span>&#123;</span><br><span class="line">       <span class="type">int</span> left=<span class="number">0</span>;</span><br><span class="line">       <span class="type">int</span> right=arr.length-<span class="number">1</span>;</span><br><span class="line">       <span class="keyword">while</span>(left&lt;=end)&#123;</span><br><span class="line">           <span class="type">int</span> index=(left+right)/<span class="number">2</span>;</span><br><span class="line">       	<span class="keyword">if</span>(num&lt;arr[index])&#123;</span><br><span class="line">           	right=index-<span class="number">1</span>;</span><br><span class="line">       	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(num&gt;arr[index])&#123;</span><br><span class="line">           	left=index+<span class="number">1</span>;</span><br><span class="line">       	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(num=arr[index])&#123;</span><br><span class="line">               <span class="keyword">return</span> index;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="数据结构："><a href="#数据结构：" class="headerlink" title="数据结构："></a>数据结构：</h3><p>​		二叉排序树：</p>
-<p>​				优点：查找和增删都很优秀</p>
-<p>​				缺点：“瘸子现象” 只有左节点或右节点</p>
-<p>​		平衡二叉树：</p>
-<p>​				规定：左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一颗平衡二叉树</p>
-<p>​				调整平衡：左高往右提，右高往左提，不行就换方向提</p>
-<p>​		红黑树：另一种算法规则的平衡二叉树</p>
-<h3 id="设计模式："><a href="#设计模式：" class="headerlink" title="设计模式："></a>设计模式：</h3><p>​		1.模板设计模式：</p>
-<p>​					作用：优化代码架构，提高代码的复用性，可以做到部分实现，部分抽象，抽象的东西交给使用</p>
-<p>​								模板的子类重写实现</p>
-<p>​		2.单例设计模式：</p>
-<p>​					单例：指一个类只存在一个对象</p>
-<p>​					单例的实现方式：（8种）</p>
-<p>​							(1) 饿汉单例设计模式：通过类获取单例对象时，对象已经准备好了</p>
-<p>​									实现步骤：</p>
-<p>​											1.将构造器私有</p>
-<p>​											2.定义静态成员变量存储一个对象</p>
-<p>​											3.定义一个方法返回单例对象</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SingleIntance</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> SingleIntance ins=<span class="keyword">new</span> <span class="title class_">SingleIntance</span>();</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">SingleIntance</span><span class="params">()</span>&#123;&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> SingleIntance <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ins</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​							(2) 懒汉单例设计模式：通过类获取单例对象时，才去创建对象</p>
-<p>​									实现步骤：</p>
-<p>​											1.将构造器私有</p>
-<p>​											2.定义静态成员变量</p>
-<p>​											3.定义一个方法返回单例对象</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SingleIntance</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> SingleIntance ins;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">SingleIntance</span><span class="params">()</span>&#123;&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> SingleIntance <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(ins==<span class="literal">null</span>)&#123;ins = <span class="keyword">new</span> <span class="title class_">SingleIntance</span>();&#125;</span><br><span class="line">        <span class="keyword">return</span> ins</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​				3.工厂模式：可以实现类与类之间的解耦	</p>
-<p>​				4.装饰模式：不改变原类，不使用继承，动态扩展一个类的功能</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> themes </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Questions and Answers</title>
+      <link href="/hexo-theme-freemind-blog/2014/03/16/qna/"/>
+      <url>/hexo-theme-freemind-blog/2014/03/16/qna/</url>
+      <content type="html"><![CDATA[<span class="label label-danger">Q</span> What does <code>Freemind</code> stands for?<br><br><span class="label label-success">A</span> <code>Freemind</code> is named after <a href="http://freemind.pluskid.org/" target="_blank" rel="external">Pluskid’s blog</a>. This theme is greatly inspired by his blog layouts and stylesheets.<br><br><span class="label label-danger">Q</span> There’re already so many themes for Hexo. Why create this one?<br><br><span class="label label-success">A</span> In fact I created this theme before I turned to use Hexo. I switched to Hexo about half an year ago, including my theme, since I have already got used to it and don’t wanna change it for now.<br><br><a id="more"></a><p><span class="label label-danger">Q</span> Why use raw CSS stylesheets instead of more fashionable stylus?</p><p><span class="label label-success">A</span> Yes, stylus is cool. But I don’t want to wrote my stylesheets again in stylus. So let’s just keep them.</p><p><span class="label label-danger">Q</span> I love your theme. How to contribute?</p><p><span class="label label-success">A</span> Great that you love it. To devote your contribution, you can:</p><ul><li>Star its <a href="https://github.com/wzpan/hexo-theme-freemind" target="_blank" rel="external">Github project</a>;</li><li>Fork this project, make your change, and then send me your pull request;</li><li>Since it is public under MIT license, you can make your own theme based on mine. But it will be nicer if you claimed that your work is based on mine in your theme project page.</li></ul><p><span class="label label-danger">Q</span> <a href="http://hahack.com" target="_blank" rel="external">Your blog</a> looks a little different to this theme. Why such difference?</p><p><span class="label label-success">A</span> Yes. I modified the theme a little bit as I open sourced this theme. I actually did some simplification <em>e.g.</em> I removed the whole <a href="http://hahack.com/wiki" target="_blank" rel="external">Wiki</a> page because I don’t think that everybody need this.</p><p><span class="label label-danger">Q</span> How to generate ToC(Table of Contents) in a certain page?</p><p><span class="label label-success">A</span> Add <code>toc: true</code> in the <a href="https://github.com/wzpan/hexo-theme-freemind#front-matter" target="_blank" rel="external">front-matter</a>.</p><p><span class="label label-danger">Q</span> Where can I find your markdown source files of these docs?</p><p><span class="label label-success">A</span> From the <a href="https://github.com/wzpan/hexo-theme-freemind-blog" target="_blank" rel="external">source repo</a> of this site.</p>]]></content>
+      
       <categories>
-        <category>笔记</category>
+          
+          <category> Docs </category>
+          
       </categories>
-      <tags>
-        <tag>java笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java基础</title>
-    <url>/posts/f7ede91d.html</url>
-    <content><![CDATA[<h3 id="基础语法："><a href="#基础语法：" class="headerlink" title="基础语法："></a>基础语法：</h3><h5 id="1、Java源文件与字节码文件："><a href="#1、Java源文件与字节码文件：" class="headerlink" title="1、	Java源文件与字节码文件："></a>1、	Java源文件与字节码文件：</h5><p>源文件.java<br>字节码文件.class<br>注：Java源文件中包含N个类则编译生成N个class文件。</p>
-<h5 id="2、java、javac命令、环境变量："><a href="#2、java、javac命令、环境变量：" class="headerlink" title="2、	java、javac命令、环境变量："></a>2、	java、javac命令、环境变量：</h5><p>Cd：下一级文件夹<br>cd…:上一级文件夹<br>编译：javac java的文件<br>运行：java 文件<br>执行：文件名<br>基本命令：javac：Java编译器   java:Java解释器  jdb:java调试器  javap:反编译   javadoc:文档生成器   appletviwer:applet解释器</p>
-<h5 id="3、关键字："><a href="#3、关键字：" class="headerlink" title="3、关键字："></a>3、关键字：</h5><p>class、abstract表明是抽象的、package、import导入、extends继承、implements实现接口、static静态的、void无返回值、<br>final最终不可改、interface定义接口、super调用父类、this、return、new、private 私有的、instanceof 判断对象</p>
-<h5 id="4、main方法："><a href="#4、main方法：" class="headerlink" title="4、main方法："></a>4、main方法：</h5><p>定义、作用：程序运行的入口</p>
-<h5 id="5、标识符命名规则："><a href="#5、标识符命名规则：" class="headerlink" title="5、标识符命名规则："></a>5、标识符命名规则：</h5><p>约定：字母小写、类与接口单词首字母大写、常量大写单词用_隔开、变量与方法第一个单词首字母小写，后面的单词首字母大写<br>规则：第一个字母以字母、下划线、$开头</p>
-<h5 id="6、数据类型：基本数据类型与引用数据类型"><a href="#6、数据类型：基本数据类型与引用数据类型" class="headerlink" title="6、数据类型：基本数据类型与引用数据类型"></a>6、数据类型：基本数据类型与引用数据类型</h5><p>（1）基本数据类型对应的封装类型：Byte Short Interger….<br>（2）byte类型的范围[-128,127]   byte b&#x3D;127;  b++为多少？-128<br>（3）boolean（true与false）<br>（4）分类：<br>自动类型转换(小转大）：byte&lt;short、char&lt;int&lt;long&lt;float&lt;double<br>强制类型转换(大转小)：目标类型 变量名&#x3D;(目标类型)值<br>（5）String与数值型的转换</p>
-<h5 id="7、运算符："><a href="#7、运算符：" class="headerlink" title="7、	运算符："></a>7、	运算符：</h5><p>（1）	&#x2F; 与 %    1&#x2F;2 、 1.0&#x2F;2、  1%2<br>（2）	a++（先其他后自增）与++a（先自增后其他）a- -（先其他后自减）与- -a（先自减后其他）<br>（3）	&amp;&amp;与&amp;、||与|<br>（4）	优先级别：括号 &gt; 算术 &gt; 关系(&lt;&lt; &gt;&gt; &gt;&gt;&gt; &lt; &gt; &lt;&#x3D; &gt;&#x3D; &#x3D;&#x3D; ¡&#x3D;) &gt; 逻辑(&amp; ^ | &amp;&amp; || ?: ) &gt; 赋值</p>
-<h5 id="8、流程控制："><a href="#8、流程控制：" class="headerlink" title="8、	流程控制："></a>8、	流程控制：</h5><p>（1）顺序结构<br>（2）选择结构（分支）</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">switch</span>(控制表达式（不能为Boolean类型）)&#123;</span><br><span class="line"><span class="keyword">case</span> 目标值：</span><br><span class="line">    执行语句</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">…</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>（3）循环结构</p>
-<blockquote>
-<p>1.while(条件){执行语句}<br>2.Do {执行语句}while(条件)<br>3.For(初始表达式;循环条件;操作表达式){执行语句}<br>4.For(元素类型 变量名:数组名或集合名)<br>jdk5.0之后的新特性，叫做增强for循环或foreach</p>
-</blockquote>
-<p>注：if…else…:配对就近原则<br>循环结构中，break与continue的作用：<br>Break:跳出当前循环结构；<br>continue:终止本次循环，执行下一次循环；</p>
-<h5 id="9、数组："><a href="#9、数组：" class="headerlink" title="9、	数组："></a>9、	数组：</h5><p>数组是引用数据类型，数组的父类是object<br>Main方法的string[] args数组的作用：接收用户输入的参数，形成数组中元素<br>Object[ ] ：可装任何数据类型的元素<br>常见算法：（面试时可能会用到）：冒泡排序法、选择排序法、二分法查找<br>（1）一维数组的定义与引用、下标从0到length-1（数组下标越界异常）</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">类型[] 名=<span class="keyword">new</span> 类型[长度]（动态初始化数组）Int[] arr=<span class="keyword">new</span> <span class="title class_">Int</span>[<span class="number">10</span>]</span><br><span class="line">类型[] 名=<span class="keyword">new</span> 类型[]&#123;元素<span class="number">1</span>,元素<span class="number">2</span>&#125;（静态初始化数组）Int[] arr=<span class="keyword">new</span> <span class="title class_">Int</span>[]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line">类型[] 名=&#123;元素<span class="number">1</span>，元素<span class="number">2</span>&#125;   Int[] arr=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure>
-<p>（2）数组操作的常用方法：<br>Arrays.方法(数组名)：使用前需导入Arrays类<br>数组的遍历toString()<br>比较相等equals()<br>排序sort()<br>二分查找binarySearch()<br>填充fill()<br>（3）二维数组的定义和引用</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">类型[][] 名=<span class="keyword">new</span> 类型[行数][列数]  Int[][] arr=<span class="keyword">new</span> <span class="title class_">Int</span>[<span class="number">2</span>][<span class="number">3</span>]</span><br><span class="line">类型[][] 名=&#123;&#123;数组<span class="number">1</span>&#125;,&#123;数组<span class="number">2</span>&#125;,&#123;数组<span class="number">3</span>&#125;&#125;  Int[][]  arr=&#123;&#123;<span class="number">1</span>,<span class="number">2</span>&#125;,&#123;<span class="number">3</span>,<span class="number">4</span>&#125;,&#123;<span class="number">5.6</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
-<p>（4）数组的优点：<br>检索效率高：内存地址连续、元素类型相同、通过数学表达式计算某个下标上元素的内存地址，从而定位元素。<br>缺点：随机增删元素效率比较低。数组无法存储大数据量</p>
-<h5 id="10、字符串"><a href="#10、字符串" class="headerlink" title="10、字符串"></a>10、字符串</h5><p>（1）字符串比较：&#x3D;&#x3D;    equals<br>（2）常用方法：length()、substring(m,n)、split()</p>
-<h5 id="11、生成随机数的方法："><a href="#11、生成随机数的方法：" class="headerlink" title="11、生成随机数的方法："></a>11、生成随机数的方法：</h5><p>Math.random()     [0，1)  </p>
-<h3 id="二、类与对象"><a href="#二、类与对象" class="headerlink" title="二、类与对象"></a>二、类与对象</h3><h5 id="1、面向对象的三大特征："><a href="#1、面向对象的三大特征：" class="headerlink" title="1、	面向对象的三大特征："></a>1、	面向对象的三大特征：</h5><p>封装、继承、多态</p>
-<h5 id="2、类与对象的关系："><a href="#2、类与对象的关系：" class="headerlink" title="2、	类与对象的关系："></a>2、	类与对象的关系：</h5><p>类是对象的抽象,对象是类的具体化。</p>
-<h5 id="3、类的基本构成："><a href="#3、类的基本构成：" class="headerlink" title="3、	类的基本构成："></a>3、	类的基本构成：</h5><p>成员方法和成员变量，局部变量（方法体之内）与成员变量（方法体之外，类之内）的区别</p>
-<h5 id="4、访问修饰符："><a href="#4、访问修饰符：" class="headerlink" title="4、	访问修饰符："></a>4、	访问修饰符：</h5><p>public(同类同包子类全局)、proctected保护的(同类同包子类)、private私有的(同类)、default缺省(同类同包)<br>访问级别：private  &lt;  default  &lt;  protected  &lt;  public<br>注：类只能用public与default修饰（内部类除外）</p>
-<h5 id="5、方法："><a href="#5、方法：" class="headerlink" title="5、	方法："></a>5、	方法：</h5><p>（1）	方法的定义：修饰符 返回值类型 方法名(参数类型){方法体；return 返回值；}<br>（2）构造方法（构造函数、构造器）：<br>作用：创建对象的同时，初始化实例变量（即赋值）<br>特点：方法名与类名相同、没有返回值类型、不能用return返回值，可以return结束方法<br>何时被调用：new构造方法名()<br>（3）方法的重载与重写（覆盖）：与方法的返回值类型和修饰符列表无关 重载的方法与原方法参数列表与方法体不同，其他相同<br>（4）方法的调用：<br>没有static的，叫实例方法，先创建new引用，再引用.方法名(实参)调用<br>静态方法的调用：类名.方法名(实参)</p>
-<h5 id="6、final、static、super、this关键字的作用："><a href="#6、final、static、super、this关键字的作用：" class="headerlink" title="6、	final、static、super、this关键字的作用："></a>6、	final、static、super、this关键字的作用：</h5><p>this：<br>代表此时正在实行的对象<br>只能在构造方法使用this调用其他构造方法，不能在成员方法或带有static的方法中使用。<br>This调用语句需要在第一条<br>Static：<br>所有对象都有的属性，可以定义为静态变量。<br>Static只能用来修饰成员变量，不能修饰局部变量<br>使用类名.变量名&#x2F;方法名来调用<br>静态代码块：static{…}<br>在类加载时执行，只执行一次，自上而下依次执行<br>Super：<br>调用父类的成员变量与成员方法<br>调用父类方法：Super.父类方法()<br>调用父类的构造方法：super(参数1,参数2)<br>Final：<br>final修饰的类不能被继承。<br>final修饰的方法不能被子类重写。<br>final修饰的成员变量（声明的同时必须赋值）与局部变量（声明并赋值，声明后赋值）是常量，只能赋值一次</p>
-<h5 id="7、继承："><a href="#7、继承：" class="headerlink" title="7、	继承："></a>7、	继承：</h5><p>特点：<br>类只支持单继承，不支持多继承。接口可以多继承。<br>注意：<br>重写的方法只有方法体、访问修饰符与被重写的方法不同<br>重写后，子类无法访问被重写的父类方法<br>重写的方法不能使用比被重写的方法低的访问修饰符等级<br>注：Object类：所有类的父类，当定义一个类时，没有使用extends时，默认继承object类</p>
-<h5 id="8、抽象类与接口"><a href="#8、抽象类与接口" class="headerlink" title="8、	抽象类与接口"></a>8、	抽象类与接口</h5><p>（1）均不能使用new实例化<br>（2）接口是特殊的抽象类，JDK8以前版本中，接口只能包含公共常量和抽象方法；之后的版本还可以包含默认方法和静态方法。<br>（3）一个类实现接口就必须实现接口中的所有方法。<br>（4）一个类可以同时实现多个接口。Implements<br>抽象类：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">修饰符 <span class="keyword">abstract</span> class类名&#123;</span><br><span class="line">    抽象方法：修饰符 <span class="keyword">abstract</span> 返回值类型 方法名()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>接口：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">修饰符 interface 接口名 [extends 父接口<span class="number">1</span>,父接口<span class="number">2</span>…]&#123;</span><br><span class="line">    公共常量：<span class="type">int</span> 变量名=值:</span><br><span class="line">    抽象方法：<span class="keyword">void</span> 方法名();</span><br><span class="line">    默认方法：<span class="keyword">default</span> <span class="keyword">void</span> 方法名()&#123;&#125;</span><br><span class="line">    静态方法：<span class="keyword">static</span> 数据类型 方法名()&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>类实现继承与接口：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">修饰符 <span class="keyword">class</span> <span class="title class_">extends</span> 父类名 implements 接口<span class="number">1</span>,接口<span class="number">2</span>&#123;</span><br><span class="line">    …</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：当一个类实现接口，若此类是抽象类，只需要实现接口部分抽象方法，其他类则需要实现全部接口的所有抽象方法。</p>
-<h5 id="9、多态性："><a href="#9、多态性：" class="headerlink" title="9、	多态性："></a>9、	多态性：</h5><p>（1）向上转型：子转父</p>
-<blockquote>
-<p>父类 引用&#x3D;new 子类();</p>
-</blockquote>
-<p>引用.方法名()<br>注：此处调用的方法为子类的方法<br>（2）向下转型：父转子<br>子类 子类的引用&#x3D;(子类) 父类的引用<br>注：关键字instanceof：可判断一个对象是否为某类的实例或子类实例。<br>语法格式：</p>
-<blockquote>
-<p>对象（或者对象的引用） instanceof 类（或接口）  运行结果为布尔类型</p>
-</blockquote>
-<p>注意：<br>子类对象可以直接赋值给父类引用<br>父类对象不能直接赋值给子类对象，必须强制还原，并且只是上转型对象才能被还原<br>类型转换的大前提：两种类型之间必须有继承关系</p>
-<h5 id="10、内部类："><a href="#10、内部类：" class="headerlink" title="10、内部类："></a>10、内部类：</h5><p>分类：静态内部类、实例内部类、局部内部类</p>
-<h5 id="11、异常处理："><a href="#11、异常处理：" class="headerlink" title="11、异常处理："></a>11、异常处理：</h5><p>常见异常：空指针异常、类型转换异常、数组下标越界异常、数字格式化异常<br>（1）try…catch和finally ：可包含多个catch ，捕获处理异常</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    可能发生异常的语句</span><br><span class="line">&#125;<span class="keyword">catch</span>(Exception类或其子类 e)&#123;</span><br><span class="line">    处理语句</span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">    不管是否发生异常，都执行<span class="keyword">finally</span>的语句，可以用来执行重要的关闭代码（除非<span class="keyword">try</span>…<span class="keyword">catch</span> 中执行了System.exit(<span class="number">0</span>)语句，即退出当前的Java虚拟机，<span class="keyword">finally</span>语句也不执行）</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>（2）throw ：手动抛出异常，用在方法体内，抛出一个异常类</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">修饰符 返回值类型 方法名(参数类型 参数名)<span class="keyword">throws</span> 抛出的异常类&#123;</span><br><span class="line">    方法体</span><br><span class="line">    Throw <span class="keyword">new</span> <span class="title class_">Exception</span>类或其子类构造方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>（3）throws：声明抛出异常,用在方法名的后面，指明方法可能抛出多个异常<br>注意：子类不能比父类抛出更多的异常</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">修饰符 返回值类型 方法名(参数类型 参数名)<span class="keyword">throws</span> 抛出的异常类&#123;</span><br><span class="line">    方法体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>（4）自定义异常类：第一步，继承Exception或RuntimeException;第二步，提供一个无参和一个有String参数的构造方法<br>（5）异常对象两个重要方法：<br>String msg&#x3D;exception.getMessage():获取异常的简单的描述信息<br>Exception.printStackTrace():Java后台打印异常堆信息</p>
-<h5 id="12、Java的常用类"><a href="#12、Java的常用类" class="headerlink" title="12、Java的常用类"></a>12、Java的常用类</h5><p>（1）Object类：所有类的根类<br> Tostring方法：返回对象的字符串形式，使用时建议重写<br> Equals方法：默认比较两个对象的内存地址是否相等，要比较对象的内容时，必须重写<br> Finalize方法：在对象即将被垃圾回收器回收时执行，垃圾少或小时可能不执行也可能执行<br> GC负责调用finalize方法<br> System.gc();建议启动垃圾回收器<br>（2）	String类：<br>注意：“字符串”.方法()<br>常用方法：使用引用.方法名（）进行调用</p>
-<blockquote>
-<p>char charAt(int index):返回字符串中index下标的字符<br>int compareTo(string anotherString):按字典顺序比较字符串的大小（0相等、1前大后小、-1前小后大，只比较第一个字符）<br>Boolean contains(CharSequence cs):判断该字符串是否包含指定字符序列<br>Boolean endsWith(String suffix):判断当前字符串是否以某字符串结尾<br>Boolean equalsIgnoreCase(String anotherString):判断两个字符串是否相等，忽略大小写<br>Byte getByte():将字符串转换成字节数组<br>Char[] toCharArray():将字符串转换成char数组<br>Int indexOf(String str):判断某个字符串在当前字符串中第一次出现的下标<br>Boolean isEmpty():判断某个字符串是否为空，length（）为0时返回true<br>Int LastIndexOf(String str):判断某个字符串在当前字符串中最后一次出现的下标<br>String replace(CharSequence target,CharSequence replacement):将字符target替换为replacement<br>String[] split(String regex):以regex为分隔拆分字符串<br>Boolean startsWith(String prefix):判断某个字符串是否以某个字符串开始<br>String substring(int beginIndex，int endindex):从beginindex（包括）开始,endIndex（不包括）结束截取字符串<br>String toLowerCase():转换成小写<br>String toUpperCase():转换成大写<br>String trim():去除字符串前后空白，中间空白不可以</p>
-</blockquote>
-<p>静态方法：类名.valueOf(非字符串)：将非字符串转换成字符串<br>（3）Stringbuffer类：是线程安全的<br>（4）StringBuilder类：是非线程安全的<br>（5）Number类：是一个抽象类，是数字类型（int、short…）包装类的父类<br> 装箱：基本数据类型—》引用数据类型<br> 拆箱：引用数据类型—》基本数据类型   number的公共方法进行操作<br> 包装类的重要静态方法：包装类名.parseInt(String s)<br>-128~127数值范围的数据在创建数据类型的包装类时，方法区的整数型常量池中已经有了256个对象，因此如果比较是否相等时，是true<br>（6）System类：System.gc():建议启动gc垃圾回收器<br>System.exit():退出jvm<br>System.currentTimeMillis():获取自1970年1月1日00：00：00到当前系统时间的总毫秒数<br>（7）日期类<br>Date()：在Date包，使用前需导包，获取当前系统时间<br>Date(int hms):参数是毫秒数，用于计算从1970加hms的时间<br>SimpleDateFormat:text包下的，专门负责日期格式化   引用.format(Date的引用)<br>特定格式：yyyy年  MM月  dd日  HH时  mm分  ss秒  SSS毫秒<br>日期字符串String转Date:  Date SimpleDateFormat的引用.parse(String s)   格式需一致<br>System.currentTimeMillis():获取自1970年1月1日00：00：00到当前系统时间的总毫秒数    可用于计算一个方法执行的总毫秒数<br>（8）枚举：是引用数据类型，可以作为返回值，并创建多个枚举值</p>
-<h5 id="13、集合"><a href="#13、集合" class="headerlink" title="13、集合"></a>13、集合</h5><p>注意：集合类和集合接口都在Java.util包下<br>（1）集合概述：集合实际上是一个容器或一个对象，可以容纳其他类型的数据。集合不能直接储存基本数据类型和Java对象。集合当中存储的是Java对象的内存地址或者说引用。<br>（2）Collection接口：<br>存储元素：<br>在没有使用泛型之前，collection中可以存储object的所有子类型，使用泛型后，只能存储某个具体的类型。<br>泛型：<br>泛型只在程序编译阶段起作用，运行阶段没用，只能存储某个具体的类型<br>泛型的优点：<br>集合的元素类型统一了、取出类型是指定类型，所以不需要进行大量的“向下转型”、调用多个子类的 父类方法时，不需转型<br>泛型的缺点：存储的元素缺乏多样性<br>常见方法：</p>
-<blockquote>
-<p>Boolean add(Object e) 向集合中添加元素<br>Int size() 获取集合中元素的个数<br>Void clear() 清空集合<br>Boolean contains(Object o) 判断当前集合是否包含o元素<br>Contains在底层string重写了equals方法，比较的是内容<br>Boolean remove(Object o) 删除o元素<br>Remove在底层也调了equals方法，删除的是内容<br>Boolean isEmpty() 判断集合是否为空<br>bject[] toArray() 将集合转换成数组（使用不多）<br>Iterator迭代器（是一个对象）：Iterator it(引用)&#x3D; c(collection对象的引用).iterator()</p>
-</blockquote>
-<blockquote>
-<blockquote>
-<p>注意：集合结构一但发生变化，迭代器必须重新获取<br>   迭代过程中，使用迭代的引用来增删元素<br>方法：可使用while循环来迭代</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>Boolean hasNext() 如果仍有元素可以迭代，则返回true<br>Object next() 返回迭代的下一个元素</p>
-</blockquote>
-<p>（3）List接口  有序可重复<br>List 的特有常见方法：</p>
-<blockquote>
-<p>void add(int index,Object element) 在元素的指定下标插入指定元素<br>Object set(int index,Object element) 修改指定下标的元素<br>Object get(int index) 根据下标获取元素<br>Int intdexOf(Object o) 获取指定对象第一次出现的下标<br>Int lastIntdexOf(Object o) 获取指定对象最后一次出现的下标<br>Object remove(int index) 删除指定下标的元素<br>boolean add(E e) 将指定的元素添加到此列表的尾部。<br>void add(int index, E element) 将指定的元素插入此列表中的指定位置。<br>boolean addAll(Collection&lt;? extends E&gt; c) 按照指定 collection 的迭代器所返回的元素顺序，将该 collection 中的所有元素添加到列表的尾部。<br>boolean contains(Object o) 如果此列表中包含指定的元素，则返回 true。<br>void ensureCapacity(int minCapacity) 如有必要，增加此 ArrayList 实例的容量，以确保它至少能够容纳最小容量参数所指定的元素数。<br>E get(int index) 返回此列表中指定位置上的元素。<br>int indexOf(Object o) 返回此列表中首次出现的指定元素的索引，或如果此列表不包含元素，则返回 -1。<br>boolean isEmpty() 如果此列表中没有元素，则返回 true<br>int lastIndexOf(Object o) 返回此列表中最后一次出现的指定元素的索引，或如果此列表不包含索引，则返回 -1。<br>E remove(int index) 移除此列表中指定位置上的元素。<br>E set(int index, E element) 用指定的元素替代此列表中指定位置上的元素。<br>int size() 返回此列表中的元素数。<br>Object[] toArray() 按适当顺序（从第一个到最后一个元素）返回包含此列表中所有元素的数组。<br><T> T[] toArray(T[] a) 按适当顺序（从第一个到最后一个元素）返回包含此列表中所有元素的数组；返回数组的运行时类型是指定数组的运行时&gt;类型。<br>void trimToSize() 将此 ArrayList 实例的容量调整为列表的当前大小。</p>
-</blockquote>
-<p><em>ArrayList集合</em>：<br>初始化容量为10（先创建一个长度为0的数组，当第一个元素加入时，初始化容量为10）。集合底层是一个Object类型组。扩容增长到原容量的1.5倍。<br><em>Vector集合</em>：<br>初始化容量为10，集合底层是一个Object类型，扩容增长到原容量的2倍。所有方法都是线程同步的（带有syncnronized关键字），但效率较低<br><em>LinkedList集合</em><br>链表：基本单元是节点，节点都有两个属性：存储的数据、下一个节点的内存地址。链表的元素在空间存储上。内存地址不连续<br>分为两类：单向链表和双向链表<br>链表的优点：随机增删元素的效率比较高（因为不涉及大量元素的位移）<br>链表的缺点：查询效率比较低，每次查找都需从头节点开始往下遍历<br>（4）Set接口<br><em>HashSet集合</em>：底层实际上new了一个HashMap集合。向HashSet集合存储元素，实际上是存储到了HashMap集合中	<br><em>TreeSet集合</em>: 继承ShortedSet接口（ShortedSet接口继承Set接口）底层实际上是一个TreeMap。无序不可重复可排序（按字典顺序升序）<br>无法对自定义类型进行排序，因为没有实现Java.lang.Comporable接口<br>要想做到排序包括两种方式：<br>第一，实现Java.lang.Comporable接口（建议当比较规则不会发生改变或只有一个时使用）<br>第二，在构造TreeSet集合的时候给它传一个比较器对象（建议当比较规则多个，并且需要频繁切换比较规则时使用）<br>（5）Map接口<br>Map与Collection没有继承关系。无序不可重复<br>常用方法：<br>V put(K key , V value) 向Map集合中添加键值对<br>V get(Object key) 通过key获取value</p>
-<blockquote>
-<p>Void clear()  清空Map集合<br>Boolean containsKey(Object key) 判断Map中是否包含某个key<br>Boolean containsValue(Object key) 判断Map中是否包含某个value<br>Boolean isEmpty()  判断Map集合中的元素个数是否为0<br>Set<K> keyset()  获取Map集合所有的key，所有键是一个Set集合<br>V remove(Object key)  通过key删除键值对<br>Int size()  获取Map集合中键值对的个数<br>Collection<V> value()  获取Map集合中所有的value，返回一个Collection类型<br>Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet() 将Map集合转换成Set集合</p>
-<blockquote>
-<p>注：Map.Entry&lt;K,V&gt;是一个类型</p>
-</blockquote>
-</blockquote>
-<p><em>HashMap集合</em>：<br>默认初始化容量是16，默认加载因子是0.75（容量达到75%，数组开始扩容，扩容增长到原容量的2倍。）<br>初始化容量必须是2的倍数。非线程安全的<br>常见方法：map.put(k,v)  放   v&#x3D;map.get(k)  取<br><em>Hashtable集合</em>：<br>初始化容量为11，默认加载因子是0.75（容量达到75%，数组开始扩容，扩容增长到（原容量*2）+1）。线程安全的<br><em>Properties集合</em>：<br>一个Map集合，继承Hashtable，因此是线程安全的。Properties的key和value都是String类型。<br>常见方法：引用.setProperty(k,v)  存   引用.getProperty(k)  取<br><em>TreeMap集合</em>：<br>继承SortedMap接口（SortedMap接口继承Map接口，是无序不可重复可自动排序的）<br>哈希表：<br>哈希表是数组和单向链表二者优点的结合体<br>放在HashMap集合key部分的元素，以及放在HashSet集合中的元素，需要同时重写hashCode()和equals()方法<br>Hash值相同放在同一个单向链表里<br>常见方法：map.put(k,v)  放   v&#x3D;map.get(k)  取<br>自平衡二叉树：<br>遵循左小右大原则存放<br>遍历的三种方式：<br>前序遍历：根左右<br>中序遍历：左根右<br>后序遍历：左右根<br>注：前中后指的是根的位置，根也就是交叉的节点</p>
-<h5 id="14、IO流"><a href="#14、IO流" class="headerlink" title="14、IO流"></a>14、IO流</h5><p>(1)	概述：I：Input O：Output  通过IO可以完成硬盘文件的读与写<br>(2)	分类：<br>按流的方向：<br>往内存去叫输入&#x2F;读（read）<br>从内存出叫输出&#x2F;写（write）<br>按读取数据方式：<br>万能流：可读文本，图片，声音，视频…<br>字符流：可读纯文本<br>(3)	常见的方法：<br>引用.readline()   读一行，不换行<br>close() 用完流一定要关闭<br>flush() 输出流可以执行该方法清空管道<br>(4)	字节流与字符流：字节流：以Stream结尾   字符流：以Reader&#x2F;writer结尾<br>a)	四个抽象类<br>字节输入流：Java.io.InputStream<br>字节输出流：Java.io.OutputStream<br>字符输入流：Java.io.Reader<br>字符输出流：Java.io.Writer<br>b)	File类：<br>常用方法：</p>
-<blockquote>
-<p>引用.exists()   判断文件是否存在<br>引用.createNewFile()  以文件形式新建<br>引用.mkdir()   以目录形式新建  引用.mkdirs()   以多重目录形式新建<br>引用.getParent()   获取文件的上级路径<br>引用.getName()   获取文件名	<br>引用.isDirectory()   判断是否是一个目录<br>引用.isFile()   判断是否是一个文件<br>引用.LastModified()  获取文件最后一次修改时间<br>引用.length()   获取文件的大小（字节）<br>引用.ListFiles()   获取当前目录下的所有的子文件</p>
-</blockquote>
-<p>c)	16个常见的流：（使用前要创建对象）<br>d)	获取一个文件的绝对路径（通用）：<br>直接以流的形式返回：InputStream in&#x3D;Thread.currentThread().getContextClassLoader().getResourceAsStream(“src下的相对路径”)<br>e)	资源绑定器（java.util.ResourceBundle）：ResourceBundle.getBundle(“xxx”)<br>便于获取属性配置文件的内容<br>注：只能绑定xxx.properties文件，且文件必须放在类路径(src)下，括号内路径后的扩展名不能写<br><em>文件专属</em>：<br>FileInputStream类：<br>常用方法：</p>
-<blockquote>
-<p>int read() 返回一个数据字节，如果以达到文件末尾，则返回-1<br>Int read(byte[] b) 将最多b.length个字节的数据读入一个byte数组中<br>int available() 返回流当中剩余的没有读到的字节数量<br>Long skip(long n) 跳过几个字节不读</p>
-</blockquote>
-<p>FileOutputStream类:文件字节输出流，从内存到硬盘<br>常见方法：</p>
-<blockquote>
-<p>FileOutputStream(“文件路径”)  先将原文件清空，再重新写入<br>FileOutputStream(“文件路径”,Boolean append) append为true时在文件末尾写入，不会清空文件。<br>FileReader类：文件字符输入流，只能输出普通文本，word文件不可以<br>FileWriter类：文件字符输出流，只能输出普通文本，word文件不可以</p>
-</blockquote>
-<p><em>缓冲流专属</em>：<br>BufferedReader类：自带缓冲区的字符输入流，不需要自定义char数组<br>节点流：当一个流的构造方法里传进一个流时，这个传进来的流就是节点流。<br>包装流：外部负责包装的流，就是包装流&#x2F;处理流<br>包装流只需关闭最外层流就行，里面的节点流会自动关闭<br>BufferedWeiter类：自带缓冲区的字符输出流<br><em>转换流</em>：<br>InputStreamReader类：转换流<br>OutputStreamWriterr类：转换流<br><em>数据流专属</em>：<br>DataOutputStream类：将数据连同数据类型一并写入文件。这个文件不是普通文本文件，读的顺序必须与写的顺序一致<br>DataInputStream类<br><em>标准输出流</em>：<br>PrintWreter类<br>PrintStrem类：标准的字节输出流，默认输出到控制台，不需要手动关闭流<br>设置输出方向：System.setOut(new PrintStream(new FileOutputStream(目标文件)))<br><em>对象专属流</em>：<br>ObjectOutputStream类：负责序列化<br>ObjectInputStream类：负责反序列化<br>(5)	序列：<br>序列化：Serialize Java对象存储到文件中，将Java对象的状态保存下来的过程。<br>反序列化：DeSerialize 将硬盘上的数据重新恢复到内存当中，恢复成Java对象<br>Transient关键字表示游离的，不参与序列化<br>注意：参与序列化与反序列化的对象，必须实现Serializable接口<br>Serializable接口：里面没有代码，其标识的作用，jvm在看到这个接口后，<br>会为该类自动生成一个序列化版本号（可用于区分类，建议手动生成）<br>(6)	IO+Properties的联合使用<br>设计理念：经常改变的数据，可以单独写到一个文件中，使用程序动态获取。<br>只需要修改文件的内容，Java代码不需要改变。<br>配置文件：以上机制的这种文件被称为配置文件<br>属性配置文件：当配置文件的内容格式为：key&#x3D;value时，称为属性配置文件<br>建立以.properties作为后缀名，但不是必须的<br>注：#是注释   key重复value自动覆盖<br>Properties：专门存放属性配置文件内容的一个类</p>
-<h5 id="15、线程"><a href="#15、线程" class="headerlink" title="15、线程"></a>15、线程</h5><p>（1）	进程与线程<br>进程：是一个应用程序（一个进程是一个软件），一个进程可以启动多个线程<br>线程：是一个进程中的执行场景&#x2F;执行单元<br>（2）Java的线程：堆内存与方法区内存共享，但是栈内存独立，互不干扰，一个线程一个栈，这就是多线程并发（可以提高效率）<br>（3）实现线程：<br>(a)	第一种方式：编写一个类直接继承Thread，并重写run方法<br>步骤：创建线程对象：直接new<br>启动线程：调用线程对象的start方法，启动成功后分支线程会自动调用run方法，并且run方法在栈底部（run与main平级）<br>注：分支线程与主线程并发执行<br>Start方法的作用：启动一个分支线程，在jvm开辟一个新的栈空间<br>单线程：直接在主栈中调用线程对象的run方法的方式就叫单线程<br>(b)	第二种方式：编写一个类实现Runnable接口<br>步骤：<br>定义一个可运行的类（实现Runnable接口）<br>创建线程对象：new Thread(new 可运行类())<br>启动线程<br>上述两种方法的执行结果：主支线程有前有后，有多有少<br>(c)	线程的生命状态<br>新建状态、就绪状态、运行状态、阻塞状态、死亡状态<br>（4）常见方法：<br>设置线程名字：引用.setName()<br>获取线程名字：引用.getNmae()<br>静态方法：<br>获取当前线程对象的名字：Thread.currentThread()<br>睡眠：Thread.sleep(long millis)  参数是毫秒，作用：让当前线程进入休眠（进入阻塞状态），可用于间隔特定的时间，去执行一段特定的代码，每隔多久执行一次<br>终断线程睡眠：引用.interrupt();   干扰睡眠（依赖Java的异常处理机制）<br>在想要终止的线程里，设置一个Boolean变量与if…else来控制<br>线程的终止<br>（5）线程的调度<br>抢占式调度模型：哪个线程的优先级比较高，抢到的cpu时间片的概率就高一些。（Java采用这种方式）<br>均分式调度模型：平均分配cpu时间片，每个线程占有的cpu时间片一样有关方法：<br>实例方法：<br>void setPriority(int newPriority)   设置线程的优先级（最低1，默认5，最高10）<br>Int getPriority()  获取线程优先级<br>Void join()  合并线程，当前线程进入阻塞，调此方法的线程执行，等它结束，当前线程才可重新执行<br>静态方法：<br>static void yield()  让位方法，暂停当前正在执行的线程对象，回到就绪状态，并执行其他线程<br>（6）线程的安全：<br>a)	存在线程安全问题的条件：多线程并发、有共享数据、共享数据有修改行为<br>b）	解决线程安全问题：<br>方案一：尽量使用局部变量代替实例变量和静态变量<br>方案二：如果必须是实例变量，可以考虑创建多个对象，这样对象不共享了，就没有线程安全问题<br>方案三：以上两个方案都不能使用，再选择synchronized，线程<br>同步机制<br>线程排队执行，（不能并发）这种机制被称为：<br>线程同步机制（牺牲了一部分效率）<br>线程同步机制语法：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">synchronized</span>()&#123;</span><br><span class="line">    线程同步代码块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注：<br>如果共享对象就是this，并且需要同步的代码块就是整个方法体可以让Synchronized出现在实例方法上来使用，这样代码简洁<br>执行原理：遇到synchronized后，线程会一个一个排队占有对象锁，占有对象锁的线程执行同步代码块，没占有的线程等候。<br>注：<br>()中填：需要同步的线程的共享对象，这个对象对于别的线程来说不是共享的。<br>Java的任何一个对象都有“一把锁(标记)”，一个对象一把锁</p>
-<p>异步编程模型：线程各自执行各自的，这种编程模型叫  做：异步编程模型（其实就是多线程并发，效率较高）<br>同步编程模型：线程之间发生等待关系，这种就是同步编程模型（线程排队执行，效率较低）<br>注：局部变量永远不会有线程安全问题<br>死锁：很难调试，建议不要嵌套使用synchronized<br>（7）守护线程<br>线程的分类：用户线程、守护线程<br>方法：引用.setDaemon(true)   启动线程之前，将线程设置为守护线程，这样当用户线程结束后，守护线程也结束。<br>（8）定时器<br>作用：间隔特定的时间去执行特定的程序<br>Timer类<br>（9）实现线程的第三种方式：实现Collable接口（JDK新特性）<br>优点：可以获取到线程的执行结果<br>缺点；效率比较低，在等待获取另一个线程执行结果的时候，当前线程收到阻塞。<br>（10）wait方法与notify方法（object类中的，任何对象都有）<br>Wait方法：会让当前线程（正在object对象上活动的线程）进入等待状态，并且释放之前占有的object对象的锁<br>Notify方法：唤醒正在object对象上等待的线程<br>NotifyAll方法：唤醒object对象上处于等待的所有线程<br>注：两种方法必须建立在线程同步的基础上<br>（11）生产者与消费者模式<br>目的：为了专门解决某个特定需求的</p>
-<h5 id="16、反射"><a href="#16、反射" class="headerlink" title="16、反射"></a>16、反射</h5><p>（1）反射机制：优点：反射机制可以操作字节码文件、使程序更加灵活<br>（2）位置：反射机制的相关类在Java.lang.reflect.*下<br>（3）相关的重要类：<br>Java.lang.Class  代表整个字节码(类)<br>Java.lang.reflect.Method  代表字节码中的方法字节码(方法)<br>Java.lang.reflect.Constructor  代表字节码中的构造方法字节码(构造方法)<br>Java.lang.reflect.Field  代表字节码中的属性字节码(成员变量)<br>（4）获取Class：Class.forName(“完整类名带有包名”)  静态方法<br>注意：如果你只希望一个类的静态代码块执行，其他代码一律不执行，可以使用此方法，这个方法的执行会导致类加载。<br>引用.getClass()  Java中任何一个对象都有此方法，获取引用的类型<br>任何类型.class  直接获取任意类型的字节码<br>（5）Class的newInstance()方法：实例化对象。<br>方法内部实际上调用了无参数构造方法，必须保证无参构造方法的存在才可以<br>（6）反射机制的灵活性：在不改变源代码的基础上，可以做到不同对象的实例化，代码不需要改动，可以修改配置文件，配置文件修改后，可以创建出不同的实例对象<br>（7）类加载器(ClassLoader)：专门负责加载类的命令&#x2F;工具<br>JDK自带三个类加载器：启动类加载器(专门加载rt.jar)  父扩展类加载器(专门加载ext)  母应用类加载器(classpath中的jar包)  子执行代码时，先将所需类全部加载到JVM中，然后通过在类加载器找对应代码文件，找到就加载，找不到就通过启动类加载器找，再找不到就在扩展类加载器找。（双亲委派机制：优先父，加载不到，就母，最后找不到，才轮到子）<br>（8）获取Field<br>获取类中所有public修饰的Field：引用.getFields()   返回一个数组<br>获取类中所有的Field：引用.getDeclaredFields()   返回一个数组<br>获取单个属性：对象引用.getDeclaredField(“属性名”)<br>反射机制调用属性：<br>给属性赋值：属性引用.set(对象)<br>获取属性值：属性引用.get(对象，值)<br>打破封装(可以访问私有变量)：属性引用.setAccessible(true)<br>获取类中所有属性的类型：引用.getType()   返回一个Class<br>获取类中所有的属性的修饰符列表：int i&#x3D;引用.getModifiers()   返回一个数字，每个数字是修饰符的代号<br>Modifier.toString(i)  将数字转换为字符串<br>获取类的简单类名：引用.getSimpleName()<br>（9）获取Method<br>可变长度参数：语法：类型… 名字<br>要求：<br>参数个数是0~N个<br>必须在参数列表中最后一个的位置上，且只能有一个<br>可以当成一个数组来看待<br>获取所有的Method(包括私有的)：引用.getDeclaredMethods()   返回一个数组<br>获取单个的Method：引用.getDeclaredMethod(“方法名”,参数列表)<br>反射机制调用方法（四要素：对象、方法、实参、返回值）：对象引用.invoke(对象,实参)<br>获取修饰符列表：Modifier.toString(引用.getModifiers())<br>获取方法的返回值类型：引用.getReturnType().getSimpleName()<br>获取方法名：引用.getName()<br>获取方法的参数列表：引用.getParameterTypes()  返回一个数组<br>（10）获取Constructor<br>获取所有构造方法：引用.getDeclaredConstructors()<br>获取单个构造方法：对象引用.getDeclaredConstructor(实参)<br>反射机制调用构造方法：Constructor引用.nwInstance(参数)<br>（11）获取类的父类：引用.getSuperclass()<br>获取类实现的接口：引用.getInterfaces()</p>
-<h5 id="17、注解（Annotation）"><a href="#17、注解（Annotation）" class="headerlink" title="17、注解（Annotation）"></a>17、注解（Annotation）</h5><p>(1)	注解是一种引用数据类型，编译后生成xxx.class文件<br>注解可以出现在类、属性、方法、变量、注解上，默认下，可以在任意位置<br>(2)	自定义注解的语法：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">一、定义</span><br><span class="line"> [修饰符列表] <span class="meta">@interface</span> 注解类型名&#123; </span><br><span class="line">    属性类型 名字();</span><br><span class="line">    属性类型[] 名字();</span><br><span class="line">&#125;</span><br><span class="line">二、 使用</span><br><span class="line"> <span class="meta">@interface</span> 注解类型名</span><br></pre></td></tr></table></figure>
-<p>(3)	自定义注解：<br>若自定义注解{}里当中有属性，那么使用注解时必须给属性赋值</p>
-<blockquote>
-<p>@注解名(属性名&#x3D;属性值,数组属性名&#x3D;{ })    </p>
-</blockquote>
-<p>注：有默认值就不需要在括号再赋值了<br>当属性名为value时，属性名可以省略<br>当属性数组中只有一个元素时，大括号{}可以省略注解当中的属性可以为：8个基本数据类型、String、Class、枚举、以及以上每种类型的数组类型<br>(4)	元注解：用来标注注解类型的注解。<br>常见元注解：<br>Target注解（用来标注“被标注的注解”可以用在哪些位置）<br>Retention注解（用来标注“被标注的注解”最终保存在哪里）<br>(5)	JDK内置的注解(Java.lang下)：<br>Override注解：只能注解方法。给编译器参考的，与运行阶段无关。带有此注解，编译器会检查，如果这个方法不是重写父类的方法，编译器报错<br>Deprecated注解：表示被注解的程序元素已过时<br>(6)	反射机制判断类上是否有某注解：<br>对象引用.isAnnotationPresent(要判断的注解名.class)<br>获取类上注解：对象引用.getAnnotation(要获取的注解名.class)<br>获取注解上的属性：注解对象引用.属性名()<br>(7)	注解的作用：注解类似一种标记，可以用注解限制某些条件，如果不满足这些条件<br>就报抛出异常。</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> Q&amp;A </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Questions and Answers（中文）</title>
+      <link href="/hexo-theme-freemind-blog/2014/03/16/qna-cn/"/>
+      <url>/hexo-theme-freemind-blog/2014/03/16/qna-cn/</url>
+      <content type="html"><![CDATA[<span class="label label-danger">Q</span> <code>Freemind</code> 这名字有何含义？<br><br><span class="label label-success">A</span> <code>Freemind</code> 命名出自 <a href="http://freemind.pluskid.org/" target="_blank" rel="external">Pluskid</a> 的博客。这个主题很大程度借鉴了他的博客的布局和样式。<br><br><span class="label label-danger">Q</span> 现在都有这么多 Hexo 的主题了，为啥又要写一个？<br><br><span class="label label-success">A</span> 实际上我这个主题在我使用 Hexo 前已经创建了。我在半年前将博客迁移到 Hexo ，因为我已经习惯了原来的主题，所以顺便把主题也移植了过来。<br><br><a id="more"></a><p><span class="label label-danger">Q</span> 为啥还用 CSS 写样式，而不用更高端大气的 stylus ？</p><p><span class="label label-success">A</span> 嗯，stylus 的确很酷。不过我不想再把以前的样式重写成 stylus 了。所以暂时先保留原来的 CSS。</p><p><span class="label label-danger">Q</span> 你的博客不错用，如何贡献？</p><p><span class="label label-success">A</span> 有人喜欢我的东西我就很高兴咯。如果想做出贡献，你可以：</p><ul><li>为本主题的 <a href="https://github.com/wzpan/hexo-theme-freemind" target="_blank" rel="external">Github 项目</a> 加颗星；</li><li>Fork 这个项目，尽情DIY，然后给我发 pull request;</li><li>这个项目遵循 MIT 开源协议，你可以在本主题基础上创建你的主题。不过如果你能在你的主题页面中声明主题基于 Freemind 就再好不过了。</li></ul><p><span class="label label-danger">Q</span> <a href="http://hahack.com" target="_blank" rel="external">你自己的博客</a> 看起来跟这个主题有点不一样呀，为什么？</p><p><span class="label label-success">A</span> 是的。我在开源这个主题前做了些简化。不是所有人都需要我的博客里的一些特性，比如 <a href="http://hahack.com/wiki" target="_blank" rel="external">Wiki</a> 页面。</p><p><span class="label label-danger">Q</span> 如何指定某些页面生成 ToC(Table of Contents) ？</p><p><span class="label label-success">A</span> 在<a href="https://github.com/wzpan/hexo-theme-freemind#front-matter" target="_blank" rel="external">文章头部</a>添加 <code>toc: true</code> 。</p><p><span class="label label-danger">Q</span> 从哪里可以找到你的这几篇文档的 Markdown 源码？</p><p><span class="label label-success">A</span> 在本站点的 <a href="https://github.com/wzpan/hexo-theme-freemind-blog" target="_blank" rel="external">源码仓库</a> 。</p>]]></content>
+      
       <categories>
-        <category>笔记</category>
+          
+          <category> Docs </category>
+          
       </categories>
-      <tags>
-        <tag>java笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>markdown语法</title>
-    <url>/posts/f134a8e5.html</url>
-    <content><![CDATA[<p>引用：</p>
-<blockquote>
-<p>引用段落1</p>
-<p>引用段落2</p>
-</blockquote>
-<p>标题：</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><p>代码块：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>链接：<br>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<p>分割线：</p>
-<hr>
-<p>图片：<br><img src="/%E5%9B%BE%E7%89%87%E9%93%BE%E6%8E%A5" alt="图片说明" title="图片title"></p>
-<p><a href="https://markdown.com.cn/"><img src="/assets/img/shiprock.jpg" alt="沙漠中的岩石图片" title="Shiprock"></a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>数据库面试题</title>
-    <url>/posts/d4eb4c98.html</url>
-    <content><![CDATA[<h4 id="❓-日常是怎么优化-SQL-的？"><a href="#❓-日常是怎么优化-SQL-的？" class="headerlink" title="❓  日常是怎么优化 SQL 的？"></a>❓  日常是怎么优化 SQL 的？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>通过慢查询日志、EXPLAIN 分析查询、show profile 分析、以及 show 命令查询系统状态及系统变量</p>
-</div></div>
-
-<h4 id="❓-MySQL-如何对大表-千万-x2F-亿级-做优化？"><a href="#❓-MySQL-如何对大表-千万-x2F-亿级-做优化？" class="headerlink" title="❓  MySQL 如何对大表(千万&#x2F;亿级)做优化？"></a>❓  MySQL 如何对大表(千万&#x2F;亿级)做优化？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>优化顺序：</p>
-<p>优化 SQL 语句和索引</p>
-<p>对频繁查询的数据进行缓存</p>
-<p>对数据库进行主从复制，读写分离，从库可以使用 MyISAM，查询效率会更高</p>
-<p>对表进行分区，SQL 条件中需要带上做分区的列，可以使查询定位到少量的分区上，查询会比较快，如果每用到分区的列会扫描全部分区</p>
-<p>垂直拆分，对大表拆分成小表</p>
-<p>水平拆分，将数据分片，拆分到其他表或数据库上</p>
-</div></div>
-
-<h4 id="❓-分区、分表、分库有什么作用？"><a href="#❓-分区、分表、分库有什么作用？" class="headerlink" title="❓  分区、分表、分库有什么作用？"></a>❓  分区、分表、分库有什么作用？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>逻辑数据分割</p>
-<p>提高单一的写和读应用速度</p>
-<p>提高分区范围读查询的速度</p>
-<p>分割数据能够有多个不同的物理文件路径，避免单目录或单文件过大</p>
-<p>高效的保存历史记录</p>
-<p>便于磁盘清理</p>
-</div></div>
-
-<h4 id="❓-如何分区、分表、分库？"><a href="#❓-如何分区、分表、分库？" class="headerlink" title="❓  如何分区、分表、分库？"></a>❓  如何分区、分表、分库？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>分区：<br>RANGE 分区，LIST 分区，HASH 分区，KEY 分区<br>分表：<br>范围分表，哈希取余分表<br>分库：<br>业务分库，垂直分库。</p>
-</div></div>
-
-<h4 id="❓-MySQL-如何实现高可用？"><a href="#❓-MySQL-如何实现高可用？" class="headerlink" title="❓  MySQL 如何实现高可用？"></a>❓  MySQL 如何实现高可用？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>实现高可用的手段主要是数据备份和失效转移机制。</p>
-<p>MySQL 采用 Master-Slave 同步机制，通过主从复制的方式实现数据的热备。</p>
-<p>失效转移需要从应用层面实现，如对服务器进行心跳检测，或通过应用程序访问失败的报告来判断失效，控制中心判断失效之后对服务进行切换，MySQL 如果做了主主备份，那么就切换到备份的主库上。</p>
-</div></div>
-
-<h4 id="❓-MySQL-主从复制的原理？"><a href="#❓-MySQL-主从复制的原理？" class="headerlink" title="❓  MySQL 主从复制的原理？"></a>❓  MySQL 主从复制的原理？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>MySQL 主从复制主要涉及三个异步线程：</p>
-<p>binlog 线程：负责将主服务器上所有的更改操作写入到二进制日志中(binary log)</p>
-<p>I&#x2F;O 线程：负责从主服务器上读取二进制的日志，并写入到从服务器的中继日志中(Relay log)</p>
-<p>SQL 线程：负责读取中继日志，解析出主服务器已经执行的数据更改操作，并在 Slave 机器上重放</p>
-</div></div>
-
-<h4 id="❓-MySql-读写分离的作用？"><a href="#❓-MySql-读写分离的作用？" class="headerlink" title="❓  MySql 读写分离的作用？"></a>❓  MySql 读写分离的作用？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>读写分离：主服务器负责处理写操作和对数据实时性要求比较高的读操作，从服务器只负责处理读操作。</p>
-<p>读写分离主要有以下几个作用：</p>
-<p>提高读写的性能，由于主从服务器负责各自的读写，极大程度缓解了锁的争用</p>
-<p>从服务器可以使用 MyISAM 存储引擎，提升查询性能，节约系统开销</p>
-<p>增加了服务器冗余，提高可用性</p>
-</div></div>
-
-<h4 id="❓-聚集索引和非聚集索引区别？"><a href="#❓-聚集索引和非聚集索引区别？" class="headerlink" title="❓  聚集索引和非聚集索引区别？"></a>❓  聚集索引和非聚集索引区别？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>根本区别：聚集索引和非聚集索引的根本区别是表记录的排列顺序和与索引的排列顺序是否一致。<br>聚集索引表记录的排列顺序和索引的排列顺序一致，所以查询效率快，只要找到第一个索引值记录，其余就连续性的记录在物理也一样连续存放。聚集索引对应的缺点就是修改慢，因为为了保证表中记录的物理和索引顺序一致，在记录插入的时候，会对数据页重新排序。<br>非聚集索引制定了表中记录的逻辑顺序，但是记录的物理和索引不一定一致，两种索引都采用B+树结构，非聚集索引的叶子层并不和实际数据页相重叠，而采用叶子层包含一个指向表中的记录在数据页中的指针方式。非聚集索引层次多，不会造成数据重排。</p>
-</div></div>
-<h4 id="❓-有哪些锁（乐观锁悲观锁），select-时怎么加排它锁？"><a href="#❓-有哪些锁（乐观锁悲观锁），select-时怎么加排它锁？" class="headerlink" title="❓  有哪些锁（乐观锁悲观锁），select 时怎么加排它锁？"></a>❓  有哪些锁（乐观锁悲观锁），select 时怎么加排它锁？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>悲观锁和乐观锁是数据库用来保证数据并发安全防止更新丢失的两种方法，例子在select … for update前加个事务就可以防止更新丢失。悲观锁和乐观锁大部分场景下差异不大，一些独特场景下有一些差别，一般我们可以从如下几个方面来判断。</p>
-<p>响应速度：如果需要非常高的响应速度，建议采用乐观锁方案，成功就执行，不成功就失败，不需要等待其他并发去释放锁。<br>冲突频率：如果冲突频率非常高，建议采用悲观锁，保证成功率，如果冲突频率大，乐观锁会需要多次重试才能成功，代价比较大。<br>重试代价：如果重试代价大，建议采用悲观锁。</p>
-</div></div>
-<h4 id="❓-SQL语句主要分为哪几类"><a href="#❓-SQL语句主要分为哪几类" class="headerlink" title="❓  SQL语句主要分为哪几类"></a>❓  SQL语句主要分为哪几类</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>数据据定义语言DDL（Data Definition Language）：主要有CREATE，DROP，ALTER等对逻辑结构有操作的，包括表结构、视图和索引。<br>数据库查询语言DQL（Data Query Language）：主要以SELECT为主<br>数据操纵语言DML（Data Manipulation Language）：主要包括INSERT，UPDATE，DELETE<br>数据控制功能DCL（Data Control Language）：主要是权限控制能操作，包括GRANT，REVOKE，COMMIT，ROLLBACK等。</p>
-</div></div>
-<h4 id="❓-什么是临时表，什么时候会使用到临时表，什么时候删除临时表？"><a href="#❓-什么是临时表，什么时候会使用到临时表，什么时候删除临时表？" class="headerlink" title="❓  什么是临时表，什么时候会使用到临时表，什么时候删除临时表？"></a>❓  什么是临时表，什么时候会使用到临时表，什么时候删除临时表？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>MySQL在执行SQL语句的时候会临时创建一些存储中间结果集的表，这种表被称为临时表，临时表只对当前连接可见，在连接关闭后，临时表会被删除并释放空间。</p>
-<p>临时表主要分为内存临时表和磁盘临时表两种。内存临时表使用的是MEMORY存储引擎，磁盘临时表使用的是MyISAM存储引擎。</p>
-<p>一般在以下几种情况中会使用到临时表：</p>
-<p>FROM中的子查询<br>DISTINCT查询并加上ORDER BY<br>ORDER BY和GROUP BY的子句不一样时会产生临时表<br>使用UNION查询会产生临时表</p>
-</div></div>
-<h4 id="❓-了解慢日志查询吗？统计过慢查询吗？对慢查询如何优化？"><a href="#❓-了解慢日志查询吗？统计过慢查询吗？对慢查询如何优化？" class="headerlink" title="❓  了解慢日志查询吗？统计过慢查询吗？对慢查询如何优化？"></a>❓  了解慢日志查询吗？统计过慢查询吗？对慢查询如何优化？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>慢查询一般用于记录执行时间超过某个临界值的SQL语句的日志。</p>
-<p>相关参数：<br>slow_query_log：是否开启慢日志查询，1表示开启，0表示关闭。<br>slow_query_log_file：MySQL数据库慢查询日志存储路径。<br>long_query_time：慢查询阈值，当SQL语句查询时间大于阈值，会被记录在日志上。<br>log_queries_not_using_indexes：未使用索引的查询会被记录到慢查询日志中。<br>log_output：日志存储方式。“FILE”表示将日志存入文件。“TABLE”表示将日志存入数据库。<br>如何对慢查询进行优化？</p>
-<p>分析语句的执行计划，查看SQL语句的索引是否命中<br>优化数据库的结构，将字段很多的表分解成多个表，或者考虑建立中间表。<br>优化LIMIT分页。</p>
-</div></div>
-<h4 id="❓-字段为什么要设置成not-null"><a href="#❓-字段为什么要设置成not-null" class="headerlink" title="❓  字段为什么要设置成not null?"></a>❓  字段为什么要设置成not null?</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>首先说一点，NULL和空值是不一样的，空值是不占用空间的，而NULL是占用空间的，所以字段设为NOT NULL后仍然可以插入空值。<br>字段设置成not null主要有以下几点原因：<br>NULL值会影响一些函数的统计，如count，遇到NULL值，这条记录不会统计在内。<br>B树不存储NULL，所以索引用不到NULL，会造成第一点中说的统计不到的问题。<br>NOT IN子查询在有NULL值的情况下返回的结果都是空值。<br>MySQL在进行比较的时候，NULL会参与字段的比较，因为NULL是一种比较特殊的数据类型，数据库在处理时需要进行特数处理，增加了数据库处理记录的复杂性。</p>
-</div></div>
-
-<h4 id="❓-如何优化LIMIT分页？"><a href="#❓-如何优化LIMIT分页？" class="headerlink" title="❓  如何优化LIMIT分页？"></a>❓  如何优化LIMIT分页？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>在LIMIT偏移量较大的时候，查询效率会变低，可以记录每次取出的最大ID，下次查询时可以利用ID进行查询</p>
-<p>建立复合索引</p>
-</div></div>
-
-<h4 id="❓-什么是垂直分表、垂直分库、水平分表、水平分库？"><a href="#❓-什么是垂直分表、垂直分库、水平分表、水平分库？" class="headerlink" title="❓  什么是垂直分表、垂直分库、水平分表、水平分库？"></a>❓  什么是垂直分表、垂直分库、水平分表、水平分库？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>垂直分表：将一个表按照字段分成多个表，每个表存储其中一部分字段。一般会将常用的字段放到一个表中，将不常用的字段放到另一个表中。</p>
-<p>垂直分表的优势：</p>
-<p>避免IO竞争减少锁表的概率。因为大的字段效率更低，第一数据量大，需要的读取时间长。第二，大字段占用的空间更大，单页内存储的行数变少，会使得IO操作增多。<br>可以更好地提升热门数据的查询效率。<br>垂直分库：按照业务对表进行分类，部署到不同的数据库上面，不同的数据库可以放到不同的服务器上面。</p>
-<p>垂直分库的优势：</p>
-<p>降低业务中的耦合，方便对不同的业务进行分级管理。<br>可以提升IO、数据库连接数、解决单机硬件资源的瓶颈问题。<br>垂直拆分（分库、分表）的缺点：</p>
-<p>主键出现冗余，需要管理冗余列<br>事务的处理变得复杂<br>仍然存在单表数据量过大的问题<br>水平分表：在同一个数据库内，把同一个表的数据按照一定规则拆分到多个表中。</p>
-<p>水平分表的优势：</p>
-<p>解决了单表数据量过大的问题<br>避免IO竞争并减少锁表的概率<br>水平分库：把同一个表的数据按照一定规则拆分到不同的数据库中，不同的数据库可以放到不同的服务器上。</p>
-<p>水平分库的优势：</p>
-<p>解决了单库大数据量的瓶颈问题<br>IO冲突减少，锁的竞争减少，某个数据库出现问题不影响其他数据库（可用性），提高了系统的稳定性和可用性<br>水平拆分（分表、分库）的缺点：</p>
-<p>分片事务一致性难以解决<br>跨节点JOIN性能差，逻辑会变得复杂<br>数据扩展难度大，不易维护<br>在系统设计时应根据业务耦合来确定垂直分库和垂直分表的方案，在数据访问压力不是特别大时应考虑缓存、读写分离等方法，若数据量很大，或持续增长可考虑水平分库分表，水平拆分所涉及的逻辑比较复杂，常见的方案有客户端架构和恶代理架构。</p>
-</div></div>]]></content>
+      
+      
+        <tags>
+            
+            <tag> Q&amp;A </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Tag Plugins</title>
+      <link href="/hexo-theme-freemind-blog/2014/03/16/tag-plugins/"/>
+      <url>/hexo-theme-freemind-blog/2014/03/16/tag-plugins/</url>
+      <content type="html"><![CDATA[<p>The freemind theme offers several new tag plugins, so as to fully take advantages of Bootstrap.</p><p>To use these tag plugins, you need to install <a href="https://github.com/wzpan/hexo-tag-bootstrap" target="_blank" rel="external">hexo-tag-bootstrap</a> first. In your blog root folder, execute the following command:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-tag-bootstrap --save</div></pre></td></tr></table></figure><p>Then you can use these tag plugins in your blog, as easily as you normally do using hexo tag plugins. </p><a id="more"></a><h2 id="Text-Color"><a href="#Text-Color" class="headerlink" title="Text Color"></a>Text Color</h2><p>Convey meaning through color with a handful of emphasis utility classes. These may also be applied to links and will darken on hover just like our default link styles.</p><h3 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;% textcolor [style] %&#125;</div><div class="line">  text string</div><div class="line">&#123;% endtextcolor %&#125;</div></pre></td></tr></table></figure><h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&#123;% textcolor muted %&#125;</div><div class="line">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</div><div class="line">&#123;% endtextcolor %&#125;</div><div class="line"></div><div class="line">&#123;% textcolor primary %&#125;</div><div class="line">Nullam id dolor id nibh ultricies vehicula ut id elit.</div><div class="line">&#123;% endtextcolor %&#125;</div><div class="line"></div><div class="line">&#123;% textcolor success %&#125;</div><div class="line">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</div><div class="line">&#123;% endtextcolor %&#125;</div><div class="line"></div><div class="line">&#123;% textcolor info %&#125;</div><div class="line">Maecenas sed diam eget risus varius blandit sit amet non magna.</div><div class="line">&#123;% endtextcolor %&#125;</div><div class="line"></div><div class="line">&#123;% textcolor warning %&#125;</div><div class="line">Etiam porta sem malesuada magna mollis euismod.</div><div class="line">&#123;% endtextcolor %&#125;</div><div class="line"></div><div class="line">&#123;% textcolor danger %&#125;</div><div class="line">Donec ullamcorper nulla non metus auctor fringilla.</div><div class="line">&#123;% endtextcolor %&#125;</div></pre></td></tr></table></figure><h3 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h3><p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p><p class="text-primary">Nullam id dolor id nibh ultricies vehicula ut id elit.</p><p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p><p class="text-info">Maecenas sed diam eget risus varius blandit sit amet non magna.</p><p class="text-warning">Etiam porta sem malesuada magna mollis euismod.</p><p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.</p><h2 id="Buttons"><a href="#Buttons" class="headerlink" title="Buttons"></a>Buttons</h2><p>Inserts a button with target links, text and specified color.</p><h3 id="Syntax-1"><a href="#Syntax-1" class="headerlink" title="Syntax"></a>Syntax</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% btn url text [style] %&#125;</div></pre></td></tr></table></figure><h3 id="Examples-1"><a href="#Examples-1" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;% btn http://hahack.com hahack %&#125;</div><div class="line"></div><div class="line">&#123;% btn http://hahack.com hahack primary %&#125;</div><div class="line"></div><div class="line">&#123;% btn http://hahack.com hahack success %&#125;</div><div class="line"></div><div class="line">&#123;% btn http://hahack.com hahack warning %&#125;</div><div class="line"></div><div class="line">&#123;% btn http://hahack.com hahack danger %&#125;</div><div class="line"></div><div class="line">&#123;% btn http://hahack.com hahack info %&#125;</div></pre></td></tr></table></figure><h3 id="Results-1"><a href="#Results-1" class="headerlink" title="Results"></a>Results</h3><a class="btn btn-default" href="http://hahack.com" target="_blank" rel="external">hahack</a><a class="btn btn-primary" href="http://hahack.com" target="_blank" rel="external">hahack</a><a class="btn btn-success" href="http://hahack.com" target="_blank" rel="external">hahack</a><a class="btn btn-warning" href="http://hahack.com" target="_blank" rel="external">hahack</a><a class="btn btn-danger" href="http://hahack.com" target="_blank" rel="external">hahack</a><a class="btn btn-info" href="http://hahack.com" target="_blank" rel="external">hahack</a><h2 id="Labels"><a href="#Labels" class="headerlink" title="Labels"></a>Labels</h2><p>Inserts a label with text and specified color.</p><h3 id="Syntax-2"><a href="#Syntax-2" class="headerlink" title="Syntax"></a>Syntax</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% label text [style] %&#125;</div></pre></td></tr></table></figure><h3 id="Examples-2"><a href="#Examples-2" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;% label default %&#125;</div><div class="line"></div><div class="line">&#123;% label warinng warning %&#125;</div><div class="line"></div><div class="line">&#123;% label success success %&#125;</div><div class="line"></div><div class="line">&#123;% label danger danger %&#125;</div><div class="line"></div><div class="line">&#123;% label primary primary %&#125;</div><div class="line"></div><div class="line">&#123;% label info info %&#125;</div></pre></td></tr></table></figure><h3 id="Results-2"><a href="#Results-2" class="headerlink" title="Results"></a>Results</h3><span class="label label-default">default</span><span class="label label-warning">warinng</span><span class="label label-success">success</span><span class="label label-danger">danger</span><span class="label label-primary">primary</span><span class="label label-info">info</span><h2 id="Badges"><a href="#Badges" class="headerlink" title="Badges"></a>Badges</h2><p>Inserts a badge with text.</p><h3 id="Syntax-3"><a href="#Syntax-3" class="headerlink" title="Syntax"></a>Syntax</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% badge text %&#125;</div></pre></td></tr></table></figure><h3 id="Examples-3"><a href="#Examples-3" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% badge 42 %&#125;</div></pre></td></tr></table></figure><h3 id="Results-3"><a href="#Results-3" class="headerlink" title="Results"></a>Results</h3><span class="badge">42</span><h2 id="Alerts"><a href="#Alerts" class="headerlink" title="Alerts"></a>Alerts</h2><p>Inserts alert messages with text and specified color.</p><h3 id="Syntax-4"><a href="#Syntax-4" class="headerlink" title="Syntax"></a>Syntax</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;% alert [style] %&#125;</div><div class="line">   Alert string</div><div class="line">&#123;% endalert %&#125;</div></pre></td></tr></table></figure><h3 id="Examples-4"><a href="#Examples-4" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;% alert warning %&#125;</div><div class="line">Best check yo self, you&apos;re not looking too good.</div><div class="line">&#123;% endalert %&#125;</div><div class="line"></div><div class="line">&#123;% alert danger %&#125;</div><div class="line">Change a few things up and try submitting again.</div><div class="line">&#123;% endalert %&#125;</div><div class="line"></div><div class="line">&#123;% alert success %&#125;</div><div class="line">You successfully read this important alert message.</div><div class="line">&#123;% endalert %&#125;</div><div class="line"></div><div class="line">&#123;% alert info %&#125;</div><div class="line">This alert needs your attention, but it&apos;s not super important.</div><div class="line">&#123;% endalert %&#125;</div></pre></td></tr></table></figure><h3 id="Results-4"><a href="#Results-4" class="headerlink" title="Results"></a>Results</h3><div class="alert alert-warning"><i class="fa fa-bell"></i>  Best check yo self, you're not looking too good.</div><div class="alert alert-danger"><i class="fa fa-bug"></i>  Change a few things up and try submitting again.</div><div class="alert alert-success"><i class="fa fa-lightbulb-o"></i>  You successfully read this important alert message.</div><div class="alert alert-info"><i class="fa fa-info"></i>  This alert needs your attention, but it's not super important.</div>]]></content>
+      
       <categories>
-        <category>资源</category>
+          
+          <category> Docs </category>
+          
       </categories>
-      <tags>
-        <tag>面试题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/posts/0.html</url>
-    <content><![CDATA[<!-- #### ❓  
-<div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"></div></div>
-
-<h4 id="❓"><a href="#❓" class="headerlink" title="❓"></a>❓</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"></div></div>
-
-<h4 id="❓-1"><a href="#❓-1" class="headerlink" title="❓"></a>❓</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"></div></div>
-
-<h4 id="❓-2"><a href="#❓-2" class="headerlink" title="❓"></a>❓</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"></div></div>
-
-<h4 id="❓-3"><a href="#❓-3" class="headerlink" title="❓"></a>❓</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"></div></div> 
-
-<h4 id="❓-4"><a href="#❓-4" class="headerlink" title="❓"></a>❓</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"></div></div>
-
-<h4 id="❓-5"><a href="#❓-5" class="headerlink" title="❓"></a>❓</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"></div></div>
-
-<h4 id="❓-6"><a href="#❓-6" class="headerlink" title="❓"></a>❓</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"></div></div>
-
-<h4 id="❓-7"><a href="#❓-7" class="headerlink" title="❓"></a>❓</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"></div></div>
-
-<h4 id="❓-8"><a href="#❓-8" class="headerlink" title="❓"></a>❓</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"></div></div>
-<p>–&gt;</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>网络协议面试题</title>
-    <url>/posts/e172783f.html</url>
-    <content><![CDATA[<h3 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h3><h4 id="❓-当你用浏览器打开一个链接的时候，计算机做了哪些工作步骤。"><a href="#❓-当你用浏览器打开一个链接的时候，计算机做了哪些工作步骤。" class="headerlink" title="❓  当你用浏览器打开一个链接的时候，计算机做了哪些工作步骤。"></a>❓  当你用浏览器打开一个链接的时候，计算机做了哪些工作步骤。</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>（1）解析域名。<br>​ （2）发起TCP的3次握手。<br>​ （3）建立TCP请求后发起HTTP请求。<br>​ （4）服务器相应HTTP请求。<br>​ （5）浏览器得到HTML代码，进行解析和处理JSON数据，并请求HTML代码中的静态资源（JS、CSS、图片等）。<br>​ （6）浏览器对页面进行渲染。</p>
-</div></div>
-
-<h4 id="❓-HTTPS的加密方式是什么，讲讲整个加密解密流程。"><a href="#❓-HTTPS的加密方式是什么，讲讲整个加密解密流程。" class="headerlink" title="❓  HTTPS的加密方式是什么，讲讲整个加密解密流程。"></a>❓  HTTPS的加密方式是什么，讲讲整个加密解密流程。</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>1）对称密码算法：指加密和解密使用相同的密钥，速度高，可加密内容较大，用来加密会话过程中的消息。典型算法DES、AES、RC5、IDEA（分组加密）RC4。</p>
-<p> 2）非对称密码算法：又称为公钥加密算法，是指加密和解密使用不同的密钥，加密速度较慢，但能提供更好的身份认证技术，用来加密对称加密的密钥（公开的密钥用于加密，私有的密钥用于解密）典型的算法RSA、DSA、DH。</p>
-<p> 3）散列算法：将文件内容通过此算法加密变成固定长度的值（散列值），这个过程可以使用密钥也可以不使用。这种散列变化是不可逆的，也就是说不能从散列值编程原文，因此散列变化通道常用语验证原文是否被篡改。典型的算法MD5、SHA、BASE64、CRC等。</p>
-</div></div>
-
-<h4 id="❓-Http与Https的区别："><a href="#❓-Http与Https的区别：" class="headerlink" title="❓  Http与Https的区别："></a>❓  Http与Https的区别：</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>HTTP 的URL 以http:&#x2F;&#x2F; 开头，而HTTPS 的URL 以https:&#x2F;&#x2F; 开头</p>
-<p>HTTP 是不安全的，而 HTTPS 是安全的</p>
-<p>HTTP 标准端口是80 ，而 HTTPS 的标准端口是443</p>
-<p>在OSI 网络模型中，HTTP工作于应用层，而HTTPS 的安全传输机制工作在传输层</p>
-<p>HTTP 无法加密，而HTTPS 对传输的数据进行加密</p>
-<p>HTTP无需证书，而HTTPS 需要CA机构颁发的SSL证书</p>
-</div></div>
-
-<h4 id="❓-什么是Http协议无状态协议-怎么解决Http协议无状态协议"><a href="#❓-什么是Http协议无状态协议-怎么解决Http协议无状态协议" class="headerlink" title="❓  什么是Http协议无状态协议?怎么解决Http协议无状态协议?"></a>❓  什么是Http协议无状态协议?怎么解决Http协议无状态协议?</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>无状态协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息</p>
-<p>也就是说，当客户端一次HTTP请求完成以后，客户端再发送一次HTTP请求，HTTP并不知道当前客户端是一个”老用户“。</p>
-<p>可以使用Cookie来解决无状态的问题，Cookie就相当于一个通行证，第一次访问的时候给客户端发送一个Cookie，当客户端再次来的时候，拿着Cookie(通行证)，那么服务器就知道这个是”老用户“</p>
-</div></div>
-
-<h4 id="❓-常见的HTTP相应状态码"><a href="#❓-常见的HTTP相应状态码" class="headerlink" title="❓  常见的HTTP相应状态码"></a>❓  常见的HTTP相应状态码</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>200：请求被正常处理</p>
-<p>204：请求被受理但没有资源可以返回</p>
-<p>206：客户端只是请求资源的一部分，服务器只对请求的部分资源执行GET方法，相应报文中通过Content-Range指定范围的资源。</p>
-<p>301：永久性重定向</p>
-<p>302：临时重定向</p>
-<p>303：与302状态码有相似功能，只是它希望客户端在请求一个URI的时候，能通过GET方法重定向到另一个URI上</p>
-<p>304：发送附带条件的请求时，条件不满足时返回，与重定向无关</p>
-<p>307：临时重定向，与302类似，只是强制要求使用POST方法</p>
-<p>400：请求报文语法有误，服务器无法识别</p>
-<p>401：请求需要认证</p>
-<p>403：请求的对应资源禁止被访问</p>
-<p>404：服务器无法找到对应资源</p>
-<p>500：服务器内部错误</p>
-<p>503：服务器正忙</p>
-</div></div>
-
-<h4 id="❓-Session和cookie的区别。"><a href="#❓-Session和cookie的区别。" class="headerlink" title="❓  Session和cookie的区别。"></a>❓  Session和cookie的区别。</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>（1）Cookie保存在客户端，未设置存储时间的Cookie，关闭浏览器会话Cookie就会被删除；设置了存储时间的Cookie保存在用户设备的磁盘中知道过期，同时Cookie在客户端所以可以伪造，不是十分安全，敏感数据不易保存。Session保存在服务器端，存储在IIS的进程开辟的内存中，而Session过多会消耗服务器资源，所以尽量少使用Session。<br>（2）Session是服务器用来跟踪用户的一种手段，每个Session都有一个唯一标识：session ID。当服务端生成一个Session时就会向客户端发送一个Cookie保存到客户端，这个Cookie保存的是Session的SessionId这样才能保证客户端发起请求后，用户能够与服务器端成千上万的Session进行匹配，同时也保证了不同页面之间传值的正确性.<br>（3）存储数据类型不同：Session能够存储任意的JAVA对象，Cookie只能存储String类型的对象。<br>（4）长于10K的数据，不要用到Cookies。</p>
-</div></div>
-
-<h3 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h3><h4 id="❓-网络的七层结构及其作用"><a href="#❓-网络的七层结构及其作用" class="headerlink" title="❓  网络的七层结构及其作用"></a>❓  网络的七层结构及其作用</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>自上而下是：</p>
-<p>应用层（数据）：确定进程之间通信的性质以满足用户需要以及提供网络与用户应用</p>
-<p>表示层（数据）：主要解决用户信息的语法表示问题，如加密解密</p>
-<p>会话层（数据）：提供包括访问验证和会话管理在内的建立和维护应用之间通信的机制，如服务器验证用户登录便是由会话层完成的</p>
-<p>传输层（段）：实现网络不同主机上用户进程之间的数据通信，可靠</p>
-<p>与不可靠的传输，传输层的错误检测，流量控制等</p>
-<p>网络层（包）：提供逻辑地址（IP）、选路，数据从源端到目的端的</p>
-<p>传输</p>
-<p>数据链路层（帧）：将上层数据封装成帧，用MAC地址访问媒介，错误检测与修正</p>
-<p>物理层（比特流）：设备之间比特流的传输，物理接口，电气特性等</p>
-</div></div>
-
-<h4 id="❓-为什么-TCP-连接需要三次握手，两次不可以么，为什么？"><a href="#❓-为什么-TCP-连接需要三次握手，两次不可以么，为什么？" class="headerlink" title="❓  为什么 TCP 连接需要三次握手，两次不可以么，为什么？"></a>❓  为什么 TCP 连接需要三次握手，两次不可以么，为什么？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>为了防止已失效的连接请求报文突然又传送到了服务端，因而产生错误。客户端发出的连接请求报文并未丢失，而是在某个网络节点长时间滞留了，以致延误到链接释放以后的某个时间才到达 Server 。</p>
-</div></div>
-
-<h4 id="❓-什么是-TCP-四次挥手？"><a href="#❓-什么是-TCP-四次挥手？" class="headerlink" title="❓  什么是 TCP 四次挥手？"></a>❓  什么是 TCP 四次挥手？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>四次挥手，简单来说，就是：</p>
-<p>发送方：我要和你断开连接！</p>
-<p>接收方：好的，断吧。</p>
-<p>接收方：我也要和你断开连接！</p>
-<p>发送方：好的，断吧。</p>
-</div></div>
-
-<h3 id="UDP-协议"><a href="#UDP-协议" class="headerlink" title="UDP 协议"></a>UDP 协议</h3><h4 id="❓-UDP-是什么？"><a href="#❓-UDP-是什么？" class="headerlink" title="❓  UDP 是什么？"></a>❓  UDP 是什么？</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>UDP（User Data Protocol，用户数据报协议），是与 TCP 相对应的协议。它是面向非连接的协议，它不与对方建立连接，而是直接就把数据包发送过去。</p>
-</div></div>
-
-<h4 id="❓-UDP-主要特点"><a href="#❓-UDP-主要特点" class="headerlink" title="❓  UDP 主要特点"></a>❓  UDP 主要特点</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>UDP 是无连接的。</p>
-<p>UDP 使用尽最大努力交付，即不保证可靠交付，因此主机不需要维持复杂的链接状态（这里面有许多参数）。</p>
-<p>UDP 是面向报文的。</p>
-<p>UDP 没有拥塞控制，因此网络出现拥塞不会使源主机的发送速率降低。</p>
-</div></div>
-
-<h4 id="❓-TCP与UDP的区别"><a href="#❓-TCP与UDP的区别" class="headerlink" title="❓  TCP与UDP的区别"></a>❓  TCP与UDP的区别</h4><div class="hide-block"><button type="button" class="hide-button" style="">查看答案
-    </button><div class="hide-content"><p>TCP 是面向连接的；UDP 是无连接的。</p>
-<p>TCP 是可靠的；UDP 是不可靠的。</p>
-<p>TCP 只支持点对点通信；UDP 支持一对一、一对多、多对一、多对多的通信模式。</p>
-<p>TCP 是面向字节流的；UDP 是面向报文的。</p>
-<p>TCP 有拥塞控制机制；UDP 没有拥塞控制，适合媒体通信。</p>
-<p>TCP 首部开销(20 个字节)，比 UDP 的首部开销(8 个字节)要大。</p>
-</div></div>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> plugins </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Tag Plugins（中文）</title>
+      <link href="/hexo-theme-freemind-blog/2014/03/16/tag-plugins-cn/"/>
+      <url>/hexo-theme-freemind-blog/2014/03/16/tag-plugins-cn/</url>
+      <content type="html"><![CDATA[<p>Freemind 主题提供了丰富的 tag plugins，以充分利用 Bootstrap 的威力。</p><p>在使用这些 tag plugins 之前，你需要先安装 <a href="https://github.com/wzpan/hexo-tag-bootstrap" target="_blank" rel="external">hexo-tag-bootstrap</a> 。在你的 Hexo 博客目录，执行下列命令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-tag-bootstrap --save</div></pre></td></tr></table></figure><p>然后就可以像使用其他 hexo tag plugins 一样使用这些 Bootstrap tag plugins 了。</p><a id="more"></a><h2 id="文本颜色"><a href="#文本颜色" class="headerlink" title="文本颜色"></a>文本颜色</h2><p>插入一段文本，并用特殊的颜色高亮它。</p><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;% textcolor [style] %&#125;</div><div class="line">  text string</div><div class="line">&#123;% endtextcolor %&#125;</div></pre></td></tr></table></figure><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&#123;% textcolor muted %&#125;</div><div class="line">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</div><div class="line">&#123;% endtextcolor %&#125;</div><div class="line"></div><div class="line">&#123;% textcolor primary %&#125;</div><div class="line">Nullam id dolor id nibh ultricies vehicula ut id elit.</div><div class="line">&#123;% endtextcolor %&#125;</div><div class="line"></div><div class="line">&#123;% textcolor success %&#125;</div><div class="line">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</div><div class="line">&#123;% endtextcolor %&#125;</div><div class="line"></div><div class="line">&#123;% textcolor info %&#125;</div><div class="line">Maecenas sed diam eget risus varius blandit sit amet non magna.</div><div class="line">&#123;% endtextcolor %&#125;</div><div class="line"></div><div class="line">&#123;% textcolor warning %&#125;</div><div class="line">Etiam porta sem malesuada magna mollis euismod.</div><div class="line">&#123;% endtextcolor %&#125;</div><div class="line"></div><div class="line">&#123;% textcolor danger %&#125;</div><div class="line">Donec ullamcorper nulla non metus auctor fringilla.</div><div class="line">&#123;% endtextcolor %&#125;</div></pre></td></tr></table></figure><h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p><p class="text-primary">Nullam id dolor id nibh ultricies vehicula ut id elit.</p><p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p><p class="text-info">Maecenas sed diam eget risus varius blandit sit amet non magna.</p><p class="text-warning">Etiam porta sem malesuada magna mollis euismod.</p><p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.</p><h2 id="按钮（Buttons）"><a href="#按钮（Buttons）" class="headerlink" title="按钮（Buttons）"></a>按钮（Buttons）</h2><p>插入一个按钮，按钮可以带有链接、文本，并可以指定样式。</p><h3 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% btn url text [style] %&#125;</div></pre></td></tr></table></figure><h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;% btn http://hahack.com hahack %&#125;</div><div class="line"></div><div class="line">&#123;% btn http://hahack.com hahack primary %&#125;</div><div class="line"></div><div class="line">&#123;% btn http://hahack.com hahack success %&#125;</div><div class="line"></div><div class="line">&#123;% btn http://hahack.com hahack warning %&#125;</div><div class="line"></div><div class="line">&#123;% btn http://hahack.com hahack danger %&#125;</div><div class="line"></div><div class="line">&#123;% btn http://hahack.com hahack info %&#125;</div></pre></td></tr></table></figure><h3 id="结果-1"><a href="#结果-1" class="headerlink" title="结果"></a>结果</h3><a class="btn btn-default" href="http://hahack.com" target="_blank" rel="external">hahack</a><a class="btn btn-primary" href="http://hahack.com" target="_blank" rel="external">hahack</a><a class="btn btn-success" href="http://hahack.com" target="_blank" rel="external">hahack</a><a class="btn btn-warning" href="http://hahack.com" target="_blank" rel="external">hahack</a><a class="btn btn-danger" href="http://hahack.com" target="_blank" rel="external">hahack</a><a class="btn btn-info" href="http://hahack.com" target="_blank" rel="external">hahack</a><h2 id="标签（Labels）"><a href="#标签（Labels）" class="headerlink" title="标签（Labels）"></a>标签（Labels）</h2><p>插入一个标签，并为其指定文本和样式。</p><h3 id="语法-2"><a href="#语法-2" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% label text [style] %&#125;</div></pre></td></tr></table></figure><h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;% label default %&#125;</div><div class="line"></div><div class="line">&#123;% label warinng warning %&#125;</div><div class="line"></div><div class="line">&#123;% label success success %&#125;</div><div class="line"></div><div class="line">&#123;% label danger danger %&#125;</div><div class="line"></div><div class="line">&#123;% label primary primary %&#125;</div><div class="line"></div><div class="line">&#123;% label info info %&#125;</div></pre></td></tr></table></figure><h3 id="结果-2"><a href="#结果-2" class="headerlink" title="结果"></a>结果</h3><span class="label label-default">default</span><span class="label label-warning">warinng</span><span class="label label-success">success</span><span class="label label-danger">danger</span><span class="label label-primary">primary</span><span class="label label-info">info</span><h2 id="徽章（Badges）"><a href="#徽章（Badges）" class="headerlink" title="徽章（Badges）"></a>徽章（Badges）</h2><p>插入一个徽章，并为其指定文本。</p><h3 id="语法-3"><a href="#语法-3" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% badge text %&#125;</div></pre></td></tr></table></figure><h3 id="示例-3"><a href="#示例-3" class="headerlink" title="示例"></a>示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% badge 42 %&#125;</div></pre></td></tr></table></figure><h3 id="结果-3"><a href="#结果-3" class="headerlink" title="结果"></a>结果</h3><span class="badge">42</span><h2 id="警报（Alerts）"><a href="#警报（Alerts）" class="headerlink" title="警报（Alerts）"></a>警报（Alerts）</h2><p>插入一段警报文本信息，并为其指定样式。</p><h3 id="语法-4"><a href="#语法-4" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;% alert [style] %&#125;</div><div class="line">   Alert string</div><div class="line">&#123;% endalert %&#125;</div></pre></td></tr></table></figure><h3 id="示例-4"><a href="#示例-4" class="headerlink" title="示例"></a>示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;% alert warning %&#125;</div><div class="line">Best check yo self, you&apos;re not looking too good.</div><div class="line">&#123;% endalert %&#125;</div><div class="line"></div><div class="line">&#123;% alert danger %&#125;</div><div class="line">Change a few things up and try submitting again.</div><div class="line">&#123;% endalert %&#125;</div><div class="line"></div><div class="line">&#123;% alert success %&#125;</div><div class="line">You successfully read this important alert message.</div><div class="line">&#123;% endalert %&#125;</div><div class="line"></div><div class="line">&#123;% alert info %&#125;</div><div class="line">This alert needs your attention, but it&apos;s not super important.</div><div class="line">&#123;% endalert %&#125;</div></pre></td></tr></table></figure><h3 id="结果-4"><a href="#结果-4" class="headerlink" title="结果"></a>结果</h3><div class="alert alert-warning"><i class="fa fa-bell"></i>  Best check yo self, you're not looking too good.</div><div class="alert alert-danger"><i class="fa fa-bug"></i>  Change a few things up and try submitting again.</div><div class="alert alert-success"><i class="fa fa-lightbulb-o"></i>  You successfully read this important alert message.</div><div class="alert alert-info"><i class="fa fa-info"></i>  This alert needs your attention, but it's not super important.</div>]]></content>
+      
       <categories>
-        <category>资源</category>
+          
+          <category> Docs </category>
+          
       </categories>
-      <tags>
-        <tag>面试题</tag>
-      </tags>
-  </entry>
+      
+      
+        <tags>
+            
+            <tag> plugins </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Code Highlight</title>
+      <link href="/hexo-theme-freemind-blog/2014/03/15/code-highlight/"/>
+      <url>/hexo-theme-freemind-blog/2014/03/15/code-highlight/</url>
+      <content type="html"><![CDATA[<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// C</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Hello World\n"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure><h2 id="C-1"><a href="#C-1" class="headerlink" title="C++"></a>C++</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// C++</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello World"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure><a id="more"></a><h2 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">helloWorld</span></span></div><div class="line">&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span></div><div class="line">    &#123;</div><div class="line">        System.out.println(<span class="string">"Hello World"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><h2 id="Assembler"><a href="#Assembler" class="headerlink" title="Assembler"></a>Assembler</h2><figure class="highlight arm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">#include</span> &lt;stdio.h&gt;</div><div class="line"></div><div class="line"><span class="symbol">char</span> format[] = <span class="string">"%s %s\n"</span><span class="comment">;</span></div><div class="line"><span class="symbol">char</span> hello[] = <span class="string">"Hello"</span><span class="comment">;</span></div><div class="line"><span class="symbol">char</span> world[] = <span class="string">"world"</span><span class="comment">;</span></div><div class="line"><span class="symbol">void</span> main( void )</div><div class="line">&#123;</div><div class="line">   __asm</div><div class="line">   &#123;</div><div class="line">      <span class="keyword">mov </span> eax, offset world</div><div class="line">      <span class="keyword">push </span>eax</div><div class="line">      <span class="keyword">mov </span> eax, offset hello</div><div class="line">      <span class="keyword">push </span>eax</div><div class="line">      <span class="keyword">mov </span> eax, offset format</div><div class="line">      <span class="keyword">push </span>eax</div><div class="line">      call printf</div><div class="line">      <span class="keyword">pop </span> ebx</div><div class="line">      <span class="keyword">pop </span> ebx</div><div class="line">      <span class="keyword">pop </span> ebx</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><h2 id="Net"><a href="#Net" class="headerlink" title=".Net"></a>.Net</h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// Hello World .NET</div><div class="line"></div><div class="line">#using &lt;mscorlib.dll&gt;</div><div class="line">using namespace System;</div><div class="line"></div><div class="line">int _tmain()</div><div class="line">&#123;</div><div class="line">    Console::WriteLine(S"Hello World");</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure><h2 id="Erlang"><a href="#Erlang" class="headerlink" title="Erlang"></a>Erlang</h2><figure class="highlight erlang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">-module</span><span class="params">(hello)</span>.</div><div class="line"><span class="keyword">-export</span><span class="params">([world/<span class="number">0</span>])</span>.</div><div class="line"></div><div class="line"><span class="function"><span class="title">world</span><span class="params">()</span> -&gt;</span> io:format(<span class="string">"Hello World"</span>).</div></pre></td></tr></table></figure><h2 id="Ruby"><a href="#Ruby" class="headerlink" title="Ruby"></a>Ruby</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/local/bin/ruby -w</span></div><div class="line">puts <span class="string">"Hello World"</span></div></pre></td></tr></table></figure><h2 id="BASIC"><a href="#BASIC" class="headerlink" title="BASIC"></a>BASIC</h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">// Texas Instruments TI-81 BASIC</div><div class="line">Prgm1:HELLO...</div><div class="line">:Disp "HELLO WORLD"</div></pre></td></tr></table></figure><h2 id="Perl"><a href="#Perl" class="headerlink" title="Perl"></a>Perl</h2><figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin perl -w  </span></div><div class="line"><span class="keyword">print</span> (<span class="string">"Hello World"</span>);</div></pre></td></tr></table></figure><h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/bin/python</span></div><div class="line">print(<span class="string">"Hello World"</span>)</div></pre></td></tr></table></figure><h2 id="Bash"><a href="#Bash" class="headerlink" title="Bash"></a>Bash</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"Hello World"</span></div></pre></td></tr></table></figure><h2 id="Brainfuck"><a href="#Brainfuck" class="headerlink" title="Brainfuck"></a>Brainfuck</h2><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="title">[</span>&lt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span>&gt;<span class="literal">-</span><span class="title">]</span>&lt;<span class="string">.</span>&gt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="title">[</span>&lt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span>&gt;<span class="literal">-</span><span class="title">]</span>&lt;<span class="literal">+</span><span class="string">.</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="string">.</span><span class="string">.</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="string">.</span><span class="title">[</span><span class="literal">-</span><span class="title">]</span></div><div class="line">&gt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="title">[</span>&lt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span>&gt;<span class="literal">-</span><span class="title">]</span> &lt;<span class="string">.</span>&gt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="title">[</span>&lt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span>&gt;<span class="literal">-</span><span class="title">]</span>&lt;<span class="literal">-</span><span class="string">.</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="string">.</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span></div><div class="line"><span class="string">.</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="string">.</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="string">.</span><span class="title">[</span><span class="literal">-</span><span class="title">]</span>&gt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="title">[</span>&lt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span>&gt;<span class="literal">-</span> <span class="title">]</span>&lt;<span class="literal">+</span><span class="string">.</span><span class="title">[</span><span class="literal">-</span><span class="title">]</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="string">.</span></div></pre></td></tr></table></figure><h2 id="php"><a href="#php" class="headerlink" title="php"></a>php</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?</span>=<span class="string">"Hello world\n"</span> <span class="meta">?&gt;</span></div></pre></td></tr></table></figure><h2 id="Pascal"><a href="#Pascal" class="headerlink" title="Pascal"></a>Pascal</h2><figure class="highlight pascal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Program</span> HelloWorld;</div><div class="line"></div><div class="line"><span class="keyword">Begin</span></div><div class="line">  Writeln (<span class="string">'Hello World!'</span>);</div><div class="line"><span class="keyword">End</span>.</div></pre></td></tr></table></figure><h2 id="Delphi"><a href="#Delphi" class="headerlink" title="Delphi"></a>Delphi</h2><figure class="highlight delphi"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Delphi, thanks to C0derr</span></div><div class="line"><span class="keyword">program</span> Project1;</div><div class="line"><span class="keyword">uses</span></div><div class="line">  qdialogs;</div><div class="line"><span class="keyword">const</span></div><div class="line">  s=<span class="string">'Hello, World!'</span>;</div><div class="line"><span class="keyword">begin</span></div><div class="line">  showmessage(s);</div><div class="line"><span class="keyword">end</span>.</div></pre></td></tr></table></figure>]]></content>
+      
+      <categories>
+          
+          <category> Demo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> highlight </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Lorem Ipsum</title>
+      <link href="/hexo-theme-freemind-blog/2014/03/15/lorem-ipsum/"/>
+      <url>/hexo-theme-freemind-blog/2014/03/15/lorem-ipsum/</url>
+      <content type="html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p><img src="/hexo-theme-freemind-blog/images/lorem-ipsum/lorem-ipsum.jpg" alt="Lorem Ipsum"></p><a id="more"></a><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>]]></content>
+      
+      <categories>
+          
+          <category> Test </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> English </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>繁體中文測試</title>
+      <link href="/hexo-theme-freemind-blog/2013/12/25/traditional-chinese-test/"/>
+      <url>/hexo-theme-freemind-blog/2013/12/25/traditional-chinese-test/</url>
+      <content type="html"><![CDATA[<p>觀自在菩薩，行深般若波羅蜜多時，照見五蘊皆空，度一切苦厄。</p><p>舍利子，色不異空，空不異色；色即是空，空即是色。受、想、行、識，亦復如是。</p><p>舍利子，是諸法空相，不生不滅，不垢不淨，不增不減，是故空中無色，無受、想、行、識；無眼、耳、鼻、舌、身、意；無色、聲、香、味、觸、法；無眼界，乃至無意識界；無無明，亦無無明盡；乃至無老死，亦無老死盡。無苦、集、滅、道，無智亦無得，以無所得故。</p><p>菩提薩埵(<code>duǒ</code>)，依般若波羅蜜多故，心無罣礙(<code>guà ài</code>)。無罣礙，故無有恐怖，遠離顛倒夢想，究竟涅槃。三世諸佛，依般若波羅蜜多故，得阿耨多羅三藐三菩提。</p><p>故知般若波羅蜜多，是大神咒，是大明咒，是無上咒，是無等等咒，能除一切苦，真實不虛。</p><p>故說般若波羅蜜多咒，即說咒曰：</p><blockquote><p>揭諦、揭諦，波羅揭諦，波羅僧揭諦，菩提薩婆訶。</p></blockquote>]]></content>
+      
+      <categories>
+          
+          <category> Test </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 繁體 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>简体中文测试</title>
+      <link href="/hexo-theme-freemind-blog/2013/12/25/simplified-chinese-test/"/>
+      <url>/hexo-theme-freemind-blog/2013/12/25/simplified-chinese-test/</url>
+      <content type="html"><![CDATA[<p>观自在菩萨，行深般若波罗蜜多时，照见五蕴皆空，度一切苦厄。</p><p>舍利子，色不异空，空不异色；色即是空，空即是色。受、想、行、识，亦复如是。</p><p>舍利子，是诸法空相，不生不灭，不垢不净，不增不减，是故空中无色，无受、想、行、识；无眼、耳、鼻、舌、身、意；无色、声、香、味、触、法；无眼界，乃至无意识界；无无明，亦无无明尽；乃至无老死，亦无老死尽。无苦、集、灭、道，无智亦无得，以无所得故。</p><p>菩提萨埵(<code>duǒ</code>)，依般若波罗蜜多故，心无罣碍(<code>guà ài</code>)。无罣碍，故无有恐怖，远离颠倒梦想，究竟涅盘。三世诸佛，依般若波罗蜜多故，得阿耨多罗三藐三菩提。</p><p>故知般若波罗蜜多，大神咒，是大明咒，是无上咒，是无等等咒，能除一切苦，真实不虚。</p><p>故说般若波罗蜜多咒， 即说咒曰，</p><blockquote><p>揭谛揭谛 波罗揭谛 波罗僧揭谛 菩提萨婆诃</p></blockquote>]]></content>
+      
+      <categories>
+          
+          <category> Test </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 简体 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+  
+  
+    
+    <entry>
+      <title></title>
+      <link href="/hexo-theme-freemind-blog/404.html"/>
+      <url>/hexo-theme-freemind-blog/404.html</url>
+      <content type="html"><![CDATA[<!DOCTYPE HTML><html>  <head><meta charset="utf-8"><title>404 | hexo-theme-freemind</title><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta property="og:site_name" content="hexo-theme-freemind"><meta property="og:image" content="undefined"><link href="favicon.png" rel="icon"><link rel="stylesheet" href="/hexo-theme-freemind/css/themes/bootstrap.css" media="screen" type="text/css">  <link rel="stylesheet" href="/hexo-theme-freemind/css/style.css" media="screen" type="text/css">  <script src="/hexo-theme-freemind/js/jquery-2.0.3.min.js"></script>  </head>  <body><nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">  <div class="container"><button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">  <span class="sr-only">Toggle navigation</span>          <span class="icon-bar"></span>          <span class="icon-bar"></span>          <span class="icon-bar"></span></button><a class="navbar-brand" href="/hexo-theme-freemind/">Freemind</a><div class="collapse navbar-collapse nav-menu">  <ul class="nav navbar-nav"><li>  <a href="/hexo-theme-freemind/archives" title="All the articles."><i class="fa fa-archive"></i>Archives  </a></li><li>  <a href="/hexo-theme-freemind/categories" title="All the categories."><i class="fa fa-folder"></i>Categories  </a></li><li>  <a href="/hexo-theme-freemind/tags" title="All the tags."><i class="fa fa-tags"></i>Tags  </a></li><li>  <a href="/hexo-theme-freemind/about" title="About me."><i class="fa fa-user"></i>About  </a></li>  </ul></div>  </div></nav><div class="clearfix"></div>    <div class="container">    <div class="content">    <div class="page-header">  <h1>OMG, failed to find this article! </h1></div><div class="row-fluid page">  <div style="text-align: center"><div class="spell-img">  <img src="/hexo-theme-freemind/images/404.png"></div><input type="text" id="local-search-input" name="q" results="0" placeholder="Don't worry, search articles here!" class="st-search-input st-default-search-input form-control" style="margin-bottom:1em">  </div>  <div id="local-search-result"></div></div>  </div>    </div> <!-- container --><div class="container-narrow">  <footer> <p>  &copy; 2014 Joseph Pan    with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/" target="_blank" rel="external">Freemind</a>.    </p> </footer></div> <!-- container-narrow --><script src="/hexo-theme-freemind/js/bootstrap.min.js"></script><script src="/hexo-theme-freemind/js/search.js"></script> <script type="text/javascript">           var path = "/hexo-theme-freemind/search.xml";     searchFunc(path, 'local-search-input', 'local-search-result');   </script>  </body></html>]]></content>
+    </entry>
+    
+    <entry>
+      <title>About</title>
+      <link href="/hexo-theme-freemind-blog/about/index.html"/>
+      <url>/hexo-theme-freemind-blog/about/index.html</url>
+      <content type="html"><![CDATA[Something about me. ;-)]]></content>
+    </entry>
+    
+    <entry>
+      <title>Categories</title>
+      <link href="/hexo-theme-freemind-blog/categories/index.html"/>
+      <url>/hexo-theme-freemind-blog/categories/index.html</url>
+      <content type="html"><![CDATA[]]></content>
+    </entry>
+    
+    <entry>
+      <title>Tags</title>
+      <link href="/hexo-theme-freemind-blog/tags/index.html"/>
+      <url>/hexo-theme-freemind-blog/tags/index.html</url>
+      <content type="html"><![CDATA[]]></content>
+    </entry>
+    
+  
 </search>
